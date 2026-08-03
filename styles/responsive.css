@@ -20,7 +20,11 @@
   .kpi-mini-grid { grid-template-columns: repeat(2, 1fr); }
   .dashboard-gallery { grid-template-columns: 1fr; }
   .dashboard-charts-row { grid-template-columns: 1fr; }
-  .kpi-grid-8, .kpi-grid-5, .kpi-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid-8, .kpi-grid-5, .kpi-grid-4, .kpi-grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .capability-matrix { grid-template-columns: 1fr; }
+  .achievements-grid { grid-template-columns: 1fr; }
+  .dashboard-pair-row { grid-template-columns: 1fr; }
+  .dashboard-charts-3 { grid-template-columns: 1fr; }
 }
 
 /* ==========================================================================
@@ -71,15 +75,58 @@
   .model-canvas-wrap canvas { height: 200px; }
   .dashboard-gallery { grid-template-columns: 1fr; }
   .dashboard-charts-row { grid-template-columns: 1fr; }
-  .kpi-grid-8, .kpi-grid-5, .kpi-grid-4, .kpi-grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid-8, .kpi-grid-5, .kpi-grid-4, .kpi-grid-3, .kpi-grid-6 { grid-template-columns: repeat(2, 1fr); }
+  .capability-matrix { grid-template-columns: 1fr; }
+  .achievements-grid { grid-template-columns: 1fr; }
+  .dashboard-pair-row { grid-template-columns: 1fr; }
+  .dashboard-charts-3 { grid-template-columns: 1fr; }
+  .scenario-mini-table { font-size: 0.78rem; }
 }
 
 /* ==========================================================================
-   PRINT (Resume page especially benefits from a clean print stylesheet)
+   PRINT — controls page count, prevents awkward breaks, preserves charts.
+   Dark sections (FP&A dashboards, Currently Developing) intentionally keep
+   their dark background in print: the embedded SVG chart text is rendered
+   in light colors for on-screen contrast, and browsers only print
+   background colors when the person enables "background graphics" in the
+   print dialog — a reasonable expectation for a dashboard-style page like
+   this one. If background graphics are off, the charts still print as
+   colored shapes with labels; only the section's dark fill is lost.
    ========================================================================== */
 @media print {
+  /* Remove chrome and interactive-only elements entirely */
   .site-header, .status-banner, .site-footer, .nav-toggle,
-  .closing-cta, .audience-routing { display: none !important; }
-  body { background: #fff; }
+  .closing-cta, .audience-routing, .skip-link { display: none !important; }
+
+  body { background: #fff; font-size: 11pt; }
+  .container { max-width: 100%; padding: 0 12px; }
+
   a { color: var(--color-ink); text-decoration: none; }
+  a[aria-disabled="true"] .coming-soon-badge { display: none; }
+
+  /* Tighten vertical rhythm so the page count stays controlled */
+  .section, .section-alt, .quick-summary, .proof-strip,
+  .currently-learning, .models-section { padding: 18px 0 !important; }
+  .hero { padding: 16px 0 !important; }
+
+  /* Never split a card, KPI group, or dashboard mid-way across a page break */
+  .card, .capability-card, .model-card, .kpi-mini,
+  .quick-summary-card, .achievement-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Keep a heading attached to the content that follows it */
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+
+  /* Dashboard pair can stack in print without losing readability */
+  .dashboard-pair-row { grid-template-columns: 1fr; }
+  .dashboard-charts-3 { grid-template-columns: 1fr; }
+
+  /* Charts are inline SVG (not canvas) so they print natively — no
+     placeholder/blank risk here. Just ensure they don't oversize the page. */
+  .svg-chart svg { max-width: 100%; }
+
+  /* Avoid orphan/widow single lines at page boundaries */
+  p, li { orphans: 3; widows: 3; }
 }

@@ -1,512 +1,299 @@
 /* ==========================================================================
    SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
-   js/charts.js — Vanilla-JS canvas charting for the Financial Models &
-   Decision-Support Dashboards section. No external chart library, no
-   dependencies, no network calls. Every dataset below is fictional —
-   illustrative only, used to demonstrate method, not copied from any real
-   employer's data.
+   js/charts.js — SVG-based chart rendering for the FP&A & Decision-Support
+   Portfolio section. No canvas, no external chart library, no network
+   calls. SVG is used deliberately: it scales via viewBox (no
+   devicePixelRatio/resize-timing bugs that can leave a canvas blank), and
+   it renders reliably in browser print/PDF export, which canvas does not
+   always do. Every dataset below is fictional/illustrative — used only to
+   demonstrate method, not copied from any real employer's data.
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  function cssVar(name, fallback) {
-    var v = getComputedStyle(document.documentElement).getPropertyValue(name);
-    return v ? v.trim() : fallback;
-  }
-
-  var COLOR_BLUE = cssVar('--color-ledger-blue', '#1F3A5F');
-  var COLOR_BRASS = cssVar('--color-brass', '#A6802E');
-  var COLOR_GREY = 'rgba(255,255,255,0.35)';
-  var COLOR_NEGATIVE = '#C77B63';
-  var COLOR_GRID = 'rgba(255,255,255,0.12)';
+  var COLOR_BLUE = '#1F3A5F';
+  var COLOR_BRASS = '#A6802E';
+  var COLOR_GREY = '#8891A0';
+  var COLOR_GOOD = '#3E8F68';
+  var COLOR_BAD = '#B5654F';
+  var COLOR_GRID = 'rgba(255,255,255,0.14)';
   var COLOR_TEXT = 'rgba(255,255,255,0.85)';
-  var COLOR_TEXT_DIM = 'rgba(255,255,255,0.5)';
-  var PAD = { top: 22, right: 14, bottom: 30, left: 42 };
+  var COLOR_TEXT_DIM = 'rgba(255,255,255,0.55)';
 
-  function prep(canvas) {
-    var ctx = canvas.getContext('2d');
-    var dpr = window.devicePixelRatio || 1;
-    var w = canvas.clientWidth || 320;
-    var h = canvas.clientHeight || 220;
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, w, h);
-    return { ctx: ctx, w: w, h: h };
+  function svgOpen(w, h) {
+    return '<svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="false" preserveAspectRatio="xMidYMid meet">';
   }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
-  function drawAxes(ctx, w, h) {
+  var PAD = { top: 24, right: 16, bottom: 34, left: 46 };
+
+  /* ---------- Multi-series line chart ---------- */
+  function lineChartSVG(w, h, categories, series, labelEvery) {
     var chartW = w - PAD.left - PAD.right;
     var chartH = h - PAD.top - PAD.bottom;
-    ctx.strokeStyle = COLOR_GRID;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(PAD.left, PAD.top);
-    ctx.lineTo(PAD.left, PAD.top + chartH);
-    ctx.lineTo(PAD.left + chartW, PAD.top + chartH);
-    ctx.stroke();
-    return { chartW: chartW, chartH: chartH };
-  }
+    var stepX = chartW / (categories.length - 1);
+    var parts = [svgOpen(w, h)];
 
-  function drawLegend(ctx, items) {
-    var lx = PAD.left;
-    ctx.font = '10px Inter, sans-serif';
-    items.forEach(function (it) {
-      ctx.fillStyle = it.color;
-      if (it.line) { ctx.fillRect(lx, 4, 12, 2); } else { ctx.fillRect(lx, 2, 9, 9); }
-      ctx.fillStyle = COLOR_TEXT;
-      ctx.textAlign = 'left';
-      ctx.fillText(it.label, lx + 15, 11);
-      lx += ctx.measureText(it.label).width + 30;
+    // gridlines (4 horizontal)
+    for (var gi = 0; gi <= 4; gi++) {
+      var gy = PAD.top + (chartH / 4) * gi;
+      parts.push('<line x1="' + PAD.left + '" y1="' + gy + '" x2="' + (PAD.left + chartW) + '" y2="' + gy + '" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
+    }
+    parts.push('<line x1="' + PAD.left + '" y1="' + PAD.top + '" x2="' + PAD.left + '" y2="' + (PAD.top + chartH) + '" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
+
+    series.forEach(function (s) {
+      var max = s.max, min = s.min || 0;
+      var pts = s.data.map(function (val, i) {
+        var x = PAD.left + i * stepX;
+        var y = PAD.top + chartH - ((val - min) / (max - min)) * chartH;
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      });
+      parts.push('<polyline points="' + pts.join(' ') + '" fill="none" stroke="' + s.color + '" stroke-width="2.5"/>');
+      s.data.forEach(function (val, i) {
+        var x = PAD.left + i * stepX;
+        var y = PAD.top + chartH - ((val - min) / (max - min)) * chartH;
+        parts.push('<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="3" fill="' + s.color + '"/>');
+      });
     });
+
+    categories.forEach(function (cat, i) {
+      if (i % (labelEvery || 2) === 0) {
+        var x = PAD.left + i * stepX;
+        parts.push('<text x="' + x + '" y="' + (PAD.top + chartH + 18) + '" font-size="10" fill="' + COLOR_TEXT_DIM + '" text-anchor="middle" font-family="Inter, sans-serif">' + esc(cat) + '</text>');
+      }
+    });
+
+    var lx = PAD.left;
+    series.forEach(function (s) {
+      parts.push('<rect x="' + lx + '" y="2" width="12" height="3" fill="' + s.color + '"/>');
+      parts.push('<text x="' + (lx + 16) + '" y="10" font-size="10.5" fill="' + COLOR_TEXT + '" font-family="Inter, sans-serif">' + esc(s.label) + '</text>');
+      lx += s.label.length * 6 + 32;
+    });
+
+    parts.push('</svg>');
+    return parts.join('');
   }
 
-  /* ---------- Generic bar chart (single or grouped, vertical) ---------- */
-  function drawBarChart(canvasId, categories, series) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx;
-    var g = drawAxes(ctx, p.w, p.h);
+  /* ---------- Bar chart (grouped, vertical, zero-baseline with +/- support) ---------- */
+  function barChartSVG(w, h, categories, series) {
+    var chartW = w - PAD.left - PAD.right;
+    var chartH = h - PAD.top - PAD.bottom;
     var all = []; series.forEach(function (s) { all = all.concat(s.data); });
     var max = Math.max.apply(null, all.concat([0])) * 1.2;
     var min = Math.min.apply(null, all.concat([0]));
     var range = max - min || 1;
-    var groupW = g.chartW / categories.length;
-    var barW = (groupW * 0.62) / series.length;
-    var baseline = PAD.top + g.chartH - ((0 - min) / range) * g.chartH;
+    var groupW = chartW / categories.length;
+    var barW = (groupW * 0.6) / series.length;
+    var baseline = PAD.top + chartH - ((0 - min) / range) * chartH;
+
+    var parts = [svgOpen(w, h)];
+    parts.push('<line x1="' + PAD.left + '" y1="' + baseline + '" x2="' + (PAD.left + chartW) + '" y2="' + baseline + '" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
 
     categories.forEach(function (cat, i) {
-      var gx = PAD.left + i * groupW + groupW * 0.19;
+      var gx = PAD.left + i * groupW + groupW * 0.2;
       series.forEach(function (s, si) {
         var val = s.data[i];
-        var barH = (Math.abs(val) / range) * g.chartH;
+        var barH = (Math.abs(val) / range) * chartH;
         var x = gx + si * barW;
-        var top = val >= 0 ? baseline - barH : baseline;
-        ctx.fillStyle = s.color || COLOR_BLUE;
-        ctx.fillRect(x, top, barW * 0.8, barH);
+        var color = s.color || (val >= 0 ? COLOR_GOOD : COLOR_BAD);
+        var y = val >= 0 ? baseline - barH : baseline;
+        parts.push('<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + (barW * 0.8).toFixed(1) + '" height="' + Math.max(barH, 1).toFixed(1) + '" fill="' + color + '"/>');
       });
-      ctx.fillStyle = COLOR_TEXT_DIM;
-      ctx.font = '10px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(cat, gx + (groupW * 0.62) / 2, PAD.top + g.chartH + 16);
+      parts.push('<text x="' + (gx + (groupW * 0.6) / 2) + '" y="' + (PAD.top + chartH + 18) + '" font-size="10" fill="' + COLOR_TEXT_DIM + '" text-anchor="middle" font-family="Inter, sans-serif">' + esc(cat) + '</text>');
     });
 
-    if (series.length > 1) drawLegend(ctx, series.map(function (s) { return { color: s.color, label: s.label }; }));
+    if (series.length > 1) {
+      var lx = PAD.left;
+      series.forEach(function (s) {
+        parts.push('<rect x="' + lx + '" y="2" width="10" height="10" fill="' + s.color + '"/>');
+        parts.push('<text x="' + (lx + 14) + '" y="11" font-size="10.5" fill="' + COLOR_TEXT + '" font-family="Inter, sans-serif">' + esc(s.label) + '</text>');
+        lx += s.label.length * 6 + 30;
+      });
+    }
+    parts.push('</svg>');
+    return parts.join('');
   }
 
-  /* ---------- Horizontal bar chart ---------- */
-  function drawHorizontalBar(canvasId, categories, values, color) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx, w = p.w, h = p.h;
-    var leftPad = 92, rightPad = 40, topPad = 14, bottomPad = 10;
-    var chartW = w - leftPad - rightPad;
-    var chartH = h - topPad - bottomPad;
-    var max = Math.max.apply(null, values) * 1.15;
-    var rowH = chartH / categories.length;
-
-    categories.forEach(function (cat, i) {
-      var y = topPad + i * rowH + rowH * 0.22;
-      var barH = rowH * 0.56;
-      var barW = (values[i] / max) * chartW;
-      ctx.fillStyle = color;
-      ctx.fillRect(leftPad, y, barW, barH);
-      ctx.fillStyle = COLOR_TEXT_DIM;
-      ctx.font = '11px Inter, sans-serif';
-      ctx.textAlign = 'right';
-      ctx.fillText(cat, leftPad - 8, y + barH * 0.75);
-      ctx.fillStyle = COLOR_TEXT;
-      ctx.textAlign = 'left';
-      ctx.fillText(values[i].toLocaleString(), leftPad + barW + 6, y + barH * 0.75);
-    });
-  }
-
-  /* ---------- Line chart (multi-series, independent scales) ---------- */
-  function drawLineChart(canvasId, categories, series, labelEvery) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx;
-    var g = drawAxes(ctx, p.w, p.h);
-    var stepX = g.chartW / (categories.length - 1);
-
-    series.forEach(function (s) {
-      var max = s.max, min = s.min || 0;
-      ctx.strokeStyle = s.color;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      s.data.forEach(function (val, i) {
-        var x = PAD.left + i * stepX;
-        var y = PAD.top + g.chartH - ((val - min) / (max - min)) * g.chartH;
-        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      });
-      ctx.stroke();
-      ctx.fillStyle = s.color;
-      s.data.forEach(function (val, i) {
-        var x = PAD.left + i * stepX;
-        var y = PAD.top + g.chartH - ((val - min) / (max - min)) * g.chartH;
-        ctx.beginPath(); ctx.arc(x, y, 2.2, 0, Math.PI * 2); ctx.fill();
-      });
-    });
-
-    ctx.fillStyle = COLOR_TEXT_DIM;
-    ctx.font = '9px Inter, sans-serif';
-    ctx.textAlign = 'center';
-    categories.forEach(function (cat, i) {
-      if (i % (labelEvery || 2) === 0) ctx.fillText(cat, PAD.left + i * stepX, PAD.top + g.chartH + 14);
-    });
-
-    drawLegend(ctx, series.map(function (s) { return { color: s.color, label: s.label, line: true }; }));
-  }
-
-  /* ---------- Combo chart: bars (left scale) + lines (right 0-100% scale) ---------- */
-  function drawComboChart(canvasId, categories, barSeries, lineSeries, labelEvery) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx;
-    var g = drawAxes(ctx, p.w, p.h);
-    var groupW = g.chartW / categories.length;
-    var barMax = Math.max.apply(null, barSeries.data) * 1.25;
-
-    categories.forEach(function (cat, i) {
-      var x = PAD.left + i * groupW + groupW * 0.25;
-      var barW = groupW * 0.5;
-      var barH = (barSeries.data[i] / barMax) * g.chartH;
-      ctx.fillStyle = barSeries.color;
-      ctx.fillRect(x, PAD.top + g.chartH - barH, barW, barH);
-      if (i % (labelEvery || 2) === 0) {
-        ctx.fillStyle = COLOR_TEXT_DIM;
-        ctx.font = '9px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(cat, x + barW / 2, PAD.top + g.chartH + 14);
-      }
-    });
-
-    var stepX = g.chartW / (categories.length - 1);
-    lineSeries.forEach(function (s) {
-      var max = s.max, min = s.min || 0;
-      ctx.strokeStyle = s.color;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      s.data.forEach(function (val, i) {
-        var x = PAD.left + i * stepX;
-        var y = PAD.top + g.chartH - ((val - min) / (max - min)) * g.chartH;
-        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      });
-      ctx.stroke();
-    });
-
-    var legendItems = [{ color: barSeries.color, label: barSeries.label }].concat(
-      lineSeries.map(function (s) { return { color: s.color, label: s.label, line: true }; })
-    );
-    drawLegend(ctx, legendItems);
-  }
-
-  /* ---------- Waterfall / bridge chart ---------- */
-  function drawWaterfall(canvasId, steps) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx;
-    var g = drawAxes(ctx, p.w, p.h);
-
+  /* ---------- Waterfall / bridge chart (true cumulative — steps must sum correctly) ---------- */
+  function waterfallSVG(w, h, steps) {
+    var chartW = w - PAD.left - PAD.right;
+    var chartH = h - PAD.top - PAD.bottom;
     var running = 0, maxSoFar = 0;
     steps.forEach(function (s) {
       running = s.isTotal ? s.value : running + s.value;
       maxSoFar = Math.max(maxSoFar, running);
     });
     var max = maxSoFar * 1.2;
-    var groupW = g.chartW / steps.length;
+    var groupW = chartW / steps.length;
     var barW = groupW * 0.55;
     var prevCum = 0;
+    var parts = [svgOpen(w, h)];
+    parts.push('<line x1="' + PAD.left + '" y1="' + (PAD.top + chartH) + '" x2="' + (PAD.left + chartW) + '" y2="' + (PAD.top + chartH) + '" stroke="' + COLOR_GRID + '" stroke-width="1"/>');
 
     steps.forEach(function (s, i) {
       var x = PAD.left + i * groupW + groupW * 0.225;
       var startVal, endVal;
       if (s.isTotal) { startVal = 0; endVal = s.value; }
       else { startVal = prevCum; endVal = prevCum + s.value; }
-      var yStart = PAD.top + g.chartH - (Math.max(startVal, endVal) / max) * g.chartH;
-      var barH = (Math.abs(endVal - startVal) / max) * g.chartH;
-      ctx.fillStyle = s.isTotal ? COLOR_BLUE : (s.value >= 0 ? COLOR_BRASS : COLOR_NEGATIVE);
-      ctx.fillRect(x, yStart, barW, Math.max(barH, 1.5));
-      ctx.fillStyle = COLOR_TEXT_DIM;
-      ctx.font = '9px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(s.label, x + barW / 2, PAD.top + g.chartH + 14);
+      var yTop = PAD.top + chartH - (Math.max(startVal, endVal) / max) * chartH;
+      var barH = (Math.abs(endVal - startVal) / max) * chartH;
+      var color = s.isTotal ? COLOR_BLUE : (s.value >= 0 ? COLOR_BRASS : COLOR_BAD);
+      parts.push('<rect x="' + x.toFixed(1) + '" y="' + yTop.toFixed(1) + '" width="' + barW.toFixed(1) + '" height="' + Math.max(barH, 1.5).toFixed(1) + '" fill="' + color + '"/>');
+      parts.push('<text x="' + (x + barW / 2) + '" y="' + (PAD.top + chartH + 16) + '" font-size="9.5" fill="' + COLOR_TEXT_DIM + '" text-anchor="middle" font-family="Inter, sans-serif">' + esc(s.label) + '</text>');
       prevCum = endVal;
     });
+    parts.push('</svg>');
+    return parts.join('');
   }
 
-  /* ---------- Donut chart ---------- */
-  function drawDonut(canvasId, segments) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx, w = p.w, h = p.h;
-    var cx = w * 0.32, cy = h / 2, rOuter = Math.min(w * 0.28, h * 0.42), rInner = rOuter * 0.58;
-    var total = segments.reduce(function (sum, s) { return sum + s.value; }, 0);
-    var start = -Math.PI / 2;
+  /* ---------- Donut chart with legend ---------- */
+  function donutSVG(w, h, segments) {
+    var cx = w * 0.30, cy = h / 2, rOuter = Math.min(w * 0.24, h * 0.40), rInner = rOuter * 0.56;
+    var total = segments.reduce(function (s, seg) { return s + seg.value; }, 0);
+    var angle = -Math.PI / 2;
+    var parts = [svgOpen(w, h)];
 
-    segments.forEach(function (s) {
-      var slice = (s.value / total) * Math.PI * 2;
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.arc(cx, cy, rOuter, start, start + slice);
-      ctx.closePath();
-      ctx.fillStyle = s.color;
-      ctx.fill();
-      start += slice;
+    segments.forEach(function (seg) {
+      var slice = (seg.value / total) * Math.PI * 2;
+      var x1 = cx + rOuter * Math.cos(angle), y1 = cy + rOuter * Math.sin(angle);
+      var x2 = cx + rOuter * Math.cos(angle + slice), y2 = cy + rOuter * Math.sin(angle + slice);
+      var largeArc = slice > Math.PI ? 1 : 0;
+      parts.push('<path d="M ' + cx + ' ' + cy + ' L ' + x1.toFixed(1) + ' ' + y1.toFixed(1) +
+        ' A ' + rOuter + ' ' + rOuter + ' 0 ' + largeArc + ' 1 ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + ' Z" fill="' + seg.color + '"/>');
+      angle += slice;
     });
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(cx, cy, rInner, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.globalCompositeOperation = 'source-over';
+    parts.push('<circle cx="' + cx + '" cy="' + cy + '" r="' + rInner + '" fill="' + '#12181F' + '"/>');
 
-    var lx = cx + rOuter + 20, ly = cy - (segments.length * 16) / 2;
-    ctx.font = '11px Inter, sans-serif';
-    ctx.textAlign = 'left';
-    segments.forEach(function (s) {
-      var pct = Math.round((s.value / total) * 100);
-      ctx.fillStyle = s.color;
-      ctx.fillRect(lx, ly, 9, 9);
-      ctx.fillStyle = COLOR_TEXT;
-      ctx.fillText(s.label + ' — ' + pct + '%', lx + 14, ly + 8.5);
-      ly += 18;
+    var lx = cx + rOuter + 26, ly = cy - (segments.length * 15) / 2;
+    segments.forEach(function (seg) {
+      var pct = Math.round((seg.value / total) * 100);
+      parts.push('<rect x="' + lx + '" y="' + (ly - 8) + '" width="9" height="9" fill="' + seg.color + '"/>');
+      parts.push('<text x="' + (lx + 13) + '" y="' + ly + '" font-size="10.5" fill="' + COLOR_TEXT + '" font-family="Inter, sans-serif">' + esc(seg.label) + ' — ' + pct + '%</text>');
+      ly += 17;
     });
+    parts.push('</svg>');
+    return parts.join('');
   }
 
-  /* ---------- CCC bridge: DSO + Inventory Days − DPO = CCC (horizontal) ---------- */
-  function drawCCCBridge(canvasId, dso, invDays, dpo, ccc) {
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx, w = p.w, h = p.h;
-    var leftPad = 14, topPad = 30, barH = 26;
-    var chartW = w - leftPad * 2;
-    var max = (dso + invDays) * 1.1;
-    var y = topPad;
-    var x = leftPad;
-
-    var dsoW = (dso / max) * chartW;
-    ctx.fillStyle = COLOR_BRASS;
-    ctx.fillRect(x, y, dsoW, barH);
-    ctx.fillStyle = COLOR_TEXT;
-    ctx.font = '11px Inter, sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText('DSO ' + dso + 'd', x + 4, y + barH / 2 + 4);
-    x += dsoW;
-
-    var invW = (invDays / max) * chartW;
-    ctx.fillStyle = COLOR_BLUE;
-    ctx.fillRect(x, y, invW, barH);
-    ctx.fillStyle = '#fff';
-    ctx.fillText('+ Inv ' + invDays + 'd', x + 4, y + barH / 2 + 4);
-    x += invW;
-
-    var dpoW = (dpo / max) * chartW;
-    ctx.fillStyle = COLOR_NEGATIVE;
-    ctx.fillRect(x - dpoW, y, dpoW, barH);
-    ctx.fillStyle = '#fff';
-    ctx.textAlign = 'right';
-    ctx.fillText('− DPO ' + dpo + 'd', x - 4, y + barH / 2 + 4);
-
-    ctx.fillStyle = COLOR_TEXT;
-    ctx.font = '13px Inter, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('= Cash Conversion Cycle: ' + ccc + ' days', w / 2, y + barH + 26);
+  /* ---------- Render into containers ---------- */
+  function mount(id, svgString) {
+    var el = document.getElementById(id);
+    if (el) el.innerHTML = svgString;
   }
-
-  /* ---------- Sensitivity heatmap ---------- */
-  function drawHeatmap(canvasId, rows, cols, matrix) {
-    // matrix[row][col] = value from -1 (unfavourable) to +1 (favourable), 0 = neutral
-    var canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    var p = prep(canvas), ctx = p.ctx, w = p.w, h = p.h;
-    var leftPad = 108, topPad = 26, rightPad = 10, bottomPad = 10;
-    var cellW = (w - leftPad - rightPad) / cols.length;
-    var cellH = (h - topPad - bottomPad) / rows.length;
-
-    ctx.font = '10px Inter, sans-serif';
-    cols.forEach(function (c, ci) {
-      ctx.fillStyle = COLOR_TEXT_DIM;
-      ctx.textAlign = 'center';
-      ctx.fillText(c, leftPad + ci * cellW + cellW / 2, 16);
-    });
-
-    rows.forEach(function (r, ri) {
-      ctx.fillStyle = COLOR_TEXT_DIM;
-      ctx.textAlign = 'right';
-      ctx.fillText(r, leftPad - 8, topPad + ri * cellH + cellH / 2 + 4);
-      cols.forEach(function (c, ci) {
-        var v = matrix[ri][ci];
-        var color;
-        if (v > 0.15) color = 'rgba(47,110,78,' + (0.35 + v * 0.4) + ')';
-        else if (v < -0.15) color = 'rgba(199,123,99,' + (0.35 + Math.abs(v) * 0.4) + ')';
-        else color = 'rgba(255,255,255,0.12)';
-        ctx.fillStyle = color;
-        var x = leftPad + ci * cellW + 2;
-        var y = topPad + ri * cellH + 2;
-        ctx.fillRect(x, y, cellW - 4, cellH - 4);
-      });
-    });
-  }
-
-  /* ---------- KPI mini-cards (DOM, no canvas) ---------- */
-  function renderKpiCards(containerId, kpis) {
-    var el = document.getElementById(containerId);
+  function renderKpis(id, kpis) {
+    var el = document.getElementById(id);
     if (!el) return;
-    el.innerHTML = '';
-    kpis.forEach(function (k) {
-      var div = document.createElement('div');
-      div.className = 'kpi-mini';
+    el.innerHTML = kpis.map(function (k) {
       var badge = k.badge ? '<span class="kpi-badge ' + k.badgeClass + '">' + k.badge + '</span>' : '';
-      div.innerHTML = '<div class="kpi-mini-value">' + k.value + '</div><div class="kpi-mini-label">' + k.label + '</div>' + badge;
-      el.appendChild(div);
-    });
+      return '<div class="kpi-mini"><div class="kpi-mini-value">' + k.value + '</div><div class="kpi-mini-label">' + k.label + '</div>' + badge + '</div>';
+    }).join('');
   }
 
   /* ==========================================================================
-     FICTIONAL DATASETS (shared across dashboards) — SAR '000s unless stated
+     FICTIONAL DATASETS — one consolidated model, no figure reused across
+     more than its designated dashboard/purpose. SAR '000s unless stated.
      ========================================================================== */
-  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var REVENUE = [980,1005,970,1035,1075,1055,1095,1120,1150,1135,1175,1200];
-  var EBITDA = [165,170,160,178,188,182,192,198,205,200,210,216];
+  var MONTHS12 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MONTHS6 = ['M1','M2','M3','M4','M5','M6'];
+
+  // Anchor: Revenue SAR 12.4m for the year, Budget Variance +4.3% — every
+  // other figure below is derived from this single base so nothing
+  // contradicts the KPI cards.
+  var REVENUE_ACTUAL = [935,959,926,987,1026,1007,1045,1069,1097,1083,1121,1145]; // sums to 12,400
+  var REVENUE_BUDGET = [920,930,939,954,968,983,997,1011,1026,1040,1054,1069];    // sums to 11,890 (+4.3% actual vs budget)
   var GROSS_MARGIN = [38,38.5,37.8,39,39.5,39,40,40.2,40.5,40,40.8,41];
   var EBITDA_MARGIN = [16.8,16.9,16.5,17.2,17.5,17.3,17.5,17.7,17.8,17.6,17.9,18.0];
-  var CLOSING_CASH = [500,540,510,560,600,580,610,630,650,635,660,680];
+
+  var DSO_TREND6 = [48,47,47,46,46,46];
+  var DPO_TREND6 = [37,38,38,38,37,38];
+  var INVD_TREND6 = [23,22,22,22,21,22];
+  var CLOSING_CASH6 = [560,600,580,610,630,650];
   var CASH_THRESHOLD = 300;
-  var INFLOWS = [1180,1200,1150,1230,1260,1240,1270,1300,1330,1310,1350,1380];
-  var OUTFLOWS = [1140,1160,1180,1180,1220,1260,1240,1280,1310,1325,1325,1360];
 
   function renderAll() {
-    // Dashboard 1: Executive Overview
-    drawComboChart('chartOverviewTrend', MONTHS, { label: 'Revenue', data: REVENUE, color: COLOR_BRASS }, [
-      { label: 'EBITDA', data: EBITDA, color: COLOR_BLUE, max: 260, min: 100 }
-    ], 2);
-    drawBarChart('chartOverviewBudget', ['Revenue','Gross Profit','OpEx','EBITDA'], [
-      { label: 'Budget', data: [4200,1680,950,730], color: COLOR_GREY },
-      { label: 'Actual', data: [4380,1750,990,760], color: COLOR_BRASS }
+    /* ---------- DASHBOARD A: Executive Finance Performance ---------- */
+    renderKpis('kpiDashboardA', [
+      { value: 'SAR 12.4m', label: 'Revenue' },
+      { value: '40.0%', label: 'Gross Margin' },
+      { value: '17.4%', label: 'EBITDA Margin' },
+      { value: 'SAR 500k', label: 'Closing Cash' },
+      { value: '+4.3%', label: 'Budget Variance' },
+      { value: '46 days', label: 'DSO' }
     ]);
-    renderKpiCards('kpiOverviewWC', [
-      { value: 'SAR 820k', label: 'Accounts Receivable' },
-      { value: 'SAR 540k', label: 'Accounts Payable' },
-      { value: 'SAR 590k', label: 'Net Working Capital' },
-      { value: '30 days', label: 'Cash Conversion Cycle' }
-    ]);
+    mount('svgRevenueBudget', lineChartSVG(560, 220, MONTHS12, [
+      { label: 'Actual', data: REVENUE_ACTUAL, color: COLOR_BRASS, max: 1200, min: 850 },
+      { label: 'Budget', data: REVENUE_BUDGET, color: COLOR_GREY, max: 1200, min: 850 }
+    ], 2));
+    mount('svgMarginTrendA', lineChartSVG(560, 220, MONTHS12, [
+      { label: 'Gross Margin %', data: GROSS_MARGIN, color: COLOR_BRASS, max: 46, min: 34 },
+      { label: 'EBITDA Margin %', data: EBITDA_MARGIN, color: COLOR_BLUE, max: 22, min: 14 }
+    ], 2));
+    mount('svgVarianceBridge', barChartSVG(560, 220,
+      ['Revenue Var.', 'Gross Profit Var.', 'OpEx Var.', 'EBITDA Var.'],
+      [{ label: 'SAR 000s', data: [510, 204, -67, 137] }]
+    ));
 
-    // Dashboard 2: Budget vs Actual
-    drawBarChart('chartBudgetActual', ['Revenue','Gross Profit','OpEx','EBITDA'], [
-      { label: 'Budget', data: [4200,1680,950,730], color: COLOR_GREY },
-      { label: 'Actual', data: [4380,1750,990,760], color: COLOR_BRASS }
-    ]);
-    drawWaterfall('chartBudgetBridge', [
-      { label: 'Budget EBITDA', value: 730, isTotal: true },
-      { label: 'Revenue Var.', value: 108 },
-      { label: 'OpEx Var.', value: -40 },
-      { label: 'Other', value: -38 },
-      { label: 'Actual EBITDA', value: 760, isTotal: true }
-    ]);
-    renderKpiCards('kpiBudgetVariance', [
-      { value: '+180', label: 'Revenue Variance (SAR 000s)', badge: 'Favourable', badgeClass: 'badge-good' },
-      { value: '+70', label: 'Gross Profit Variance', badge: 'Favourable', badgeClass: 'badge-good' },
-      { value: '+40', label: 'OpEx Variance', badge: 'Unfavourable', badgeClass: 'badge-bad' },
-      { value: '+30', label: 'EBITDA Variance', badge: 'Favourable', badgeClass: 'badge-good' }
-    ]);
-
-    // Dashboard 3: Revenue & Margin Trend
-    drawComboChart('chartRevenueTrend', MONTHS, { label: 'Revenue', data: REVENUE, color: COLOR_BRASS },
-      [
-        { label: 'Gross Margin %', data: GROSS_MARGIN, color: COLOR_BLUE, max: 46, min: 34 },
-        { label: 'EBITDA Margin %', data: EBITDA_MARGIN, color: '#7FD4A8', max: 22, min: 14 }
-      ], 2);
-
-    // Dashboard 4: Cash Flow Forecast
-    renderKpiCards('kpiCashFlow', [
-      { value: 'SAR 500k', label: 'Opening Cash' },
-      { value: '+SAR 1,200k', label: 'Operating Cash Flow' },
-      { value: '−SAR 150k', label: 'Investing Cash Flow' },
-      { value: '−SAR 100k', label: 'Financing Cash Flow' },
-      { value: 'SAR 500k', label: 'Closing Cash' }
-    ]);
-    drawLineChart('chartCashClosing', MONTHS, [
-      { label: 'Closing Cash', data: CLOSING_CASH, color: COLOR_BRASS, max: 750, min: 250 },
-      { label: 'Min. Threshold', data: MONTHS.map(function () { return CASH_THRESHOLD; }), color: COLOR_NEGATIVE, max: 750, min: 250 }
-    ], 2);
-    drawBarChart('chartCashInOut', MONTHS, [
-      { label: 'Inflows', data: INFLOWS, color: COLOR_BLUE },
-      { label: 'Outflows', data: OUTFLOWS, color: COLOR_GREY }
-    ]);
-
-    // Dashboard 5: Working Capital
-    renderKpiCards('kpiWorkingCapital', [
+    /* ---------- DASHBOARD B: Working Capital & Cash ---------- */
+    renderKpis('kpiDashboardB', [
       { value: 'SAR 820k', label: 'Accounts Receivable' },
       { value: 'SAR 540k', label: 'Accounts Payable' },
       { value: 'SAR 310k', label: 'Inventory' },
-      { value: 'SAR 590k', label: 'Net Working Capital' }
+      { value: 'SAR 590k', label: 'Net Working Capital' },
+      { value: '30 days', label: 'Cash Conversion Cycle' }
     ]);
-    drawCCCBridge('chartCCC', 46, 22, 38, 30);
-    drawBarChart('chartWCCompare', ['Receivable','Payable','Inventory'], [
-      { label: 'SAR 000s', data: [820, 540, 310], color: COLOR_BRASS }
-    ]);
-
-    // Dashboard 6: AR Ageing
-    drawHorizontalBar('chartArAgeingH', ['Current','1-30 days','31-60 days','61-90 days','90+ days'], [420,210,110,55,25], COLOR_BRASS);
-    drawDonut('chartArDonut', [
+    mount('svgArDonut', donutSVG(560, 210, [
       { label: 'Current', value: 420, color: COLOR_BLUE },
       { label: '1-30d', value: 210, color: COLOR_BRASS },
-      { label: '31-60d', value: 110, color: '#7FD4A8' },
-      { label: '61-90d', value: 55, color: COLOR_NEGATIVE },
-      { label: '90+d', value: 25, color: '#8B4A3C' }
-    ]);
-    renderKpiCards('kpiArAgeing', [
-      { value: '22%', label: 'Overdue % of Total' },
-      { value: 'SAR 80k', label: 'High-Risk Balance (61+ days)' },
-      { value: '90+ days', label: 'Collection Priority' }
-    ]);
+      { label: '31-60d', value: 110, color: COLOR_GOOD },
+      { label: '61-90d', value: 55, color: COLOR_BAD },
+      { label: '90+d', value: 25, color: '#7A3A2C' }
+    ]));
+    mount('svgDsoDpoTrend', lineChartSVG(560, 220, MONTHS6, [
+      { label: 'DSO', data: DSO_TREND6, color: COLOR_BRASS, max: 55, min: 18 },
+      { label: 'DPO', data: DPO_TREND6, color: COLOR_BLUE, max: 55, min: 18 },
+      { label: 'Inventory Days', data: INVD_TREND6, color: COLOR_GOOD, max: 55, min: 18 }
+    ], 1));
+    mount('svgCashForecast', lineChartSVG(560, 220, MONTHS6, [
+      { label: 'Closing Cash', data: CLOSING_CASH6, color: COLOR_BRASS, max: 750, min: 250 },
+      { label: 'Min. Threshold', data: MONTHS6.map(function () { return CASH_THRESHOLD; }), color: COLOR_BAD, max: 750, min: 250 }
+    ], 1));
 
-    // Dashboard 7: Cost & Margin
-    drawWaterfall('chartProfitBridge', [
-      { label: 'Revenue', value: 4380, isTotal: true },
-      { label: 'Direct Costs', value: -2630 },
-      { label: 'Contrib. Margin', value: 1750, isTotal: true },
-      { label: 'OpEx', value: -990 },
-      { label: 'EBITDA', value: 760, isTotal: true }
+    /* ---------- DASHBOARD C: Profitability & Scenario Analysis ---------- */
+    renderKpis('kpiDashboardC', [
+      { value: '40.0%', label: 'Contribution Margin' },
+      { value: '17.4%', label: 'EBITDA Margin' },
+      { value: '+SAR 180k', label: 'Base Cash Impact' },
+      { value: '+SAR 340k', label: 'Upside Cash Impact' },
+      { value: '−SAR 60k', label: 'Downside Cash Impact' }
     ]);
-    drawDonut('chartCostDonut', [
-      { label: 'Direct Costs', value: 2630, color: COLOR_GREY },
-      { label: 'OpEx', value: 990, color: COLOR_NEGATIVE },
-      { label: 'EBITDA', value: 760, color: COLOR_BRASS }
-    ]);
-    drawLineChart('chartMarginTrend', MONTHS, [
-      { label: 'Contribution Margin %', data: GROSS_MARGIN, color: COLOR_BRASS, max: 46, min: 34 },
-      { label: 'EBITDA Margin %', data: EBITDA_MARGIN, color: '#7FD4A8', max: 22, min: 14 }
-    ], 2);
-
-    // Dashboard 8: Scenario Analysis
-    drawBarChart('chartScenario', ['Revenue Growth %','Cost Inflation %','Gross Margin %'], [
-      { label: 'Base', data: [4.3, 3.0, 40.0], color: COLOR_GREY },
-      { label: 'Upside', data: [8.5, 2.0, 42.5], color: COLOR_BRASS },
-      { label: 'Downside', data: [-1.5, 5.5, 36.0], color: COLOR_NEGATIVE }
-    ]);
-    drawHeatmap('chartHeatmap', ['Revenue Growth','Cost Inflation','Gross Margin'], ['Downside','Base','Upside'], [
-      [-0.6, 0.2, 0.8],
-      [-0.7, 0.1, 0.5],
-      [-0.8, 0.2, 0.7]
-    ]);
-    renderKpiCards('kpiScenario', [
-      { value: '+SAR 180k', label: 'Cash Impact — Base' },
-      { value: '+SAR 340k', label: 'Cash Impact — Upside' },
-      { value: '−SAR 60k', label: 'Cash Impact — Downside' }
-    ]);
+    mount('svgProfitBridge', waterfallSVG(560, 220, [
+      { label: 'Revenue', value: 12400, isTotal: true },
+      { label: 'Direct Costs', value: -7440 },
+      { label: 'Contrib. Margin', value: 4960, isTotal: true },
+      { label: 'OpEx', value: -2802 },
+      { label: 'EBITDA', value: 2158, isTotal: true }
+    ]));
+    mount('svgCostDonut', donutSVG(560, 210, [
+      { label: 'Direct Costs', value: 7440, color: COLOR_GREY },
+      { label: 'Payroll', value: 1541, color: COLOR_BLUE },
+      { label: 'Occupancy', value: 504, color: COLOR_BRASS },
+      { label: 'Administration', value: 420, color: COLOR_GOOD },
+      { label: 'Other Operating', value: 337, color: COLOR_BAD }
+    ]));
+    mount('svgScenarioBars', barChartSVG(560, 220,
+      ['Revenue Growth %', 'Gross Margin %'],
+      [
+        { label: 'Base', data: [4.3, 40.0], color: COLOR_GREY },
+        { label: 'Upside', data: [8.5, 42.5], color: COLOR_BRASS },
+        { label: 'Downside', data: [-1.5, 36.0], color: COLOR_BAD }
+      ]
+    ));
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    if (!document.getElementById('chartOverviewTrend')) return; // not on this page
+    if (!document.getElementById('svgRevenueBudget')) return; // not on this page
     renderAll();
-    var resizeTimer;
-    window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(renderAll, 200);
-    });
   });
 
 })();

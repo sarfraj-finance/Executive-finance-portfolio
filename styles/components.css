@@ -418,6 +418,85 @@
 .badge-good { background: rgba(47,110,78,0.25); color: #7FD4A8; }
 .badge-bad { background: rgba(199,123,99,0.25); color: #E8A692; }
 
+/* ---------- Core Finance Capabilities (premium matrix, not a checklist) ---------- */
+.capability-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+.capability-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.capability-card-title {
+  font-size: 1rem;
+  color: var(--color-ledger-blue);
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.capability-tag-list { display: flex; flex-direction: column; gap: 10px; }
+.capability-tag-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.cap-name { font-size: 0.9rem; color: var(--color-ink); }
+.level-continuing { background: rgba(91,100,114,0.1); color: var(--color-slate); }
+
+/* ---------- Achievements grid (4 cards, 2x2) ---------- */
+.achievements-grid { grid-template-columns: repeat(2, 1fr); }
+.achievement-card p { font-size: 0.9rem; color: var(--color-slate); margin: 0; }
+.achievement-card h3 { padding-right: var(--space-4); }
+
+/* ---------- FP&A Dashboard gallery: A full-width, B+C side by side ---------- */
+.dashboard-pair-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.dashboard-charts-3 { grid-template-columns: repeat(3, 1fr); }
+.model-fictional-label-full {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-brass);
+  border: 1px solid rgba(166,128,46,0.5);
+  border-radius: 999px;
+  padding: 3px 10px;
+  margin-bottom: var(--space-2);
+}
+.model-chart-wrap { margin-bottom: var(--space-3); }
+.model-chart-caption {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 6px;
+}
+.svg-chart { background: rgba(255,255,255,0.03); border-radius: var(--radius); }
+.svg-chart svg { width: 100%; height: auto; display: block; }
+
+.scenario-mini-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-2) 0;
+  font-size: 0.85rem;
+}
+.scenario-mini-table th, .scenario-mini-table td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+}
+.scenario-mini-table thead th { color: rgba(255,255,255,0.55); font-weight: 500; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; }
+
 /* ---------- Currently Developing (grouped pills) ---------- */
 .dev-group { margin-bottom: var(--space-4); }
 .dev-group:last-child { margin-bottom: 0; }
