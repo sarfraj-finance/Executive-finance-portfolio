@@ -1,13 +1,18 @@
 /* ==========================================================================
    SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
-   js/navigation.js — all header/nav behavior, vanilla JS, no dependencies.
+   js/navigation.js — vanilla JS, no dependencies.
 
-   Handles:
-   - Mobile navigation toggle, closed automatically after a link is chosen
-   - Keyboard- and mouse-accessible dropdowns, single source of truth
-     (the .is-open class) so only one dropdown is ever open at a time
-   - Escape key closes any open dropdown and the mobile menu
-   - Disabled ("Coming soon") links are inert — click is blocked
+   Dropdown rules (strict, per spec):
+   - Closed by default
+   - Open ONLY on click (no hover, no :focus-within)
+   - Only one dropdown open at a time
+   - Opening one closes any other that's open
+   - Closes on outside click
+   - Closes on Escape (and returns focus to the toggle)
+   - Closes after a link inside it is selected
+   - Correct aria-expanded state at every step
+   - Mobile menu closes automatically after any nav link is selected
+   - Disabled ("Coming soon") links never navigate
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var primaryNav = document.getElementById('primaryNav');
   var dropdownItems = document.querySelectorAll('.has-dropdown');
 
-  function closeAllDropdowns(exceptItem) {
+  function closeAllDropdowns() {
     dropdownItems.forEach(function (item) {
-      if (item !== exceptItem && item.classList.contains('is-open')) {
+      if (item.classList.contains('is-open')) {
         item.classList.remove('is-open');
         var toggle = item.querySelector('.dropdown-toggle');
         if (toggle) toggle.setAttribute('aria-expanded', 'false');
@@ -50,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Dropdown menus: single-open-at-a-time, click + hover ---------- */
+  /* ---------- Dropdowns: CLICK ONLY. No mouseenter/mouseleave anywhere. ---------- */
   dropdownItems.forEach(function (item) {
     var toggle = item.querySelector('.dropdown-toggle');
     if (!toggle) return;
@@ -58,24 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
     toggle.addEventListener('click', function (event) {
       event.stopPropagation();
       var wasOpen = item.classList.contains('is-open');
-      closeAllDropdowns(item);
+
+      // Only one dropdown open at a time: close everything first.
+      closeAllDropdowns();
+
+      // Then re-open this one only if it wasn't already the open one
+      // (i.e. this click is toggling it open, not closing it).
       if (!wasOpen) {
         item.classList.add('is-open');
         toggle.setAttribute('aria-expanded', 'true');
-      } else {
-        item.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
       }
-    });
-
-    item.addEventListener('mouseenter', function () {
-      closeAllDropdowns(item);
-      item.classList.add('is-open');
-      toggle.setAttribute('aria-expanded', 'true');
-    });
-    item.addEventListener('mouseleave', function () {
-      item.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -93,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Escape key: close dropdowns and mobile menu ---------- */
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape' || event.key === 'Esc') {
-      var hadOpenDropdown = document.querySelector('.has-dropdown.is-open');
+      var openItem = document.querySelector('.has-dropdown.is-open');
       closeAllDropdowns();
       closeMobileMenu();
-      if (hadOpenDropdown) {
-        var toggle = hadOpenDropdown.querySelector('.dropdown-toggle');
+      if (openItem) {
+        var toggle = openItem.querySelector('.dropdown-toggle');
         if (toggle) toggle.focus();
       }
     }
