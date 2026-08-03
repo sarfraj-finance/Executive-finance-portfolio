@@ -1,0 +1,60 @@
+/* ==========================================================================
+   SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
+   styles/animations.css — All motion in one place, so it's easy to audit
+   and disable. Motion is used sparingly by design intent: this is an
+   executive credibility site, not a consumer product, so animation
+   should read as "a document settling into place," not a bounce or a
+   flourish.
+   ========================================================================== */
+
+/* ---------- Global transition rules for interactive elements ---------- */
+.btn,
+.nav-cta,
+.routing-card,
+a[href] {
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              border-color var(--transition-fast),
+              opacity var(--transition-fast);
+}
+
+.routing-card {
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+.routing-card:hover { transform: translateY(-2px); }
+
+/* ---------- Scroll-reveal (optional, opt-in via .reveal class) ----------
+   Applied by js/animations.js using IntersectionObserver. Elements start
+   slightly lower and faded; the JS adds .is-visible once they enter the
+   viewport. If JS fails to load, .reveal elements still show normally
+   because the base (non-.reveal) state is fully visible — see below. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 480ms ease, transform 480ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Status dot pulse (subtle, "Open to Opportunities" banner) ---------- */
+.status-dot {
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(47, 110, 78, 0.25); }
+  50%      { box-shadow: 0 0 0 6px rgba(47, 110, 78, 0.12); }
+}
+
+/* ---------- Respect reduced-motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

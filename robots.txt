@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sarfraj-finance.github.io/Executive-finance-portfolio/sitemap.xml

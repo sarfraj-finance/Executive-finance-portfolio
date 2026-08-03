@@ -1,0 +1,352 @@
+/* ==========================================================================
+   SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
+   styles/components.css — Reusable UI pieces: buttons, cards, badges,
+   quick-summary card, proof strip, audience routing, chips, forms.
+   Depends on tokens defined in main.css.
+   ========================================================================== */
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+}
+.btn:hover { text-decoration: none; }
+
+.btn-primary { background: var(--color-ledger-blue); color: #fff; }
+.btn-primary:hover { background: var(--color-ledger-blue-dark); }
+
+.btn-secondary { background: transparent; color: var(--color-ledger-blue); border-color: var(--color-ledger-blue); }
+.btn-secondary:hover { background: rgba(31, 58, 95, 0.06); }
+
+.btn-tertiary { background: transparent; color: var(--color-ink); border-color: var(--color-border); }
+.btn-tertiary:hover { background: rgba(27, 36, 48, 0.04); }
+
+.btn-with-icon { display: inline-flex; align-items: center; }
+
+/* ---------- Verification tick badge (signature design element) ---------- */
+.tick-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(166, 128, 46, 0.12);
+  color: var(--color-brass);
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.tick {
+  color: var(--color-brass);
+  font-size: 1rem;
+}
+
+/* ---------- Recruiter Quick Summary ---------- */
+.quick-summary { padding: var(--space-6) 0; }
+.quick-summary-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.quick-summary-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+.quick-summary-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-slate);
+  margin: 0;
+}
+.quick-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3) var(--space-4);
+  margin: 0;
+}
+.qs-item dt {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-slate);
+  margin-bottom: 4px;
+}
+.qs-item dd { margin: 0; font-size: 0.95rem; color: var(--color-ink); }
+.qs-with-icon { display: flex; align-items: center; }
+
+/* ---------- Proof strip ---------- */
+.proof-strip {
+  padding: var(--space-6) 0;
+  background: var(--color-paper-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+}
+.proof-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-2);
+}
+.proof-item .tick { margin-bottom: var(--space-1); }
+.proof-number {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: var(--color-ledger-blue);
+  line-height: 1.1;
+}
+.proof-label { font-size: 0.8rem; color: var(--color-slate); margin-top: var(--space-1); }
+
+/* ---------- Intro / long-form text blocks ---------- */
+.intro-container, .prose { max-width: 760px; }
+.prose p { font-size: 1.05rem; color: var(--color-ink); }
+.prose h2 { margin-top: var(--space-6); }
+
+/* ---------- Audience routing ---------- */
+.audience-routing { background: var(--color-paper-alt); }
+.audience-routing h2 { text-align: center; margin-bottom: var(--space-4); }
+.routing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+.routing-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  color: var(--color-ink);
+}
+.routing-card:hover { border-color: var(--color-ledger-blue); text-decoration: none; }
+.routing-label { font-weight: 600; font-size: 0.95rem; }
+.routing-target { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-ledger-blue); }
+
+/* ---------- Card grids ---------- */
+.section-heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+.section-heading-row h2 { margin: 0; }
+.see-all-link { font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
+
+.disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-slate);
+  border-left: 3px solid var(--color-brass);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+.card {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.card .tick-badge { position: absolute; top: var(--space-2); right: var(--space-2); }
+.card h3 { font-size: 1.05rem; padding-right: var(--space-4); }
+.card p { font-size: 0.92rem; color: var(--color-slate); margin: 0; }
+.project-card { border-top: 3px solid var(--color-ledger-blue); }
+.status-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-slate);
+  background: var(--color-paper-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-bottom: var(--space-2);
+}
+
+/* ---------- Currently Learning ---------- */
+.currently-learning { background: var(--color-ledger-blue); color: #fff; }
+.learning-inner { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+.learning-copy { flex: 1 1 260px; }
+.currently-learning h2 { color: #fff; }
+.currently-learning .learning-copy p { color: rgba(255,255,255,0.8); margin: 0; }
+.learning-chips { display: flex; gap: var(--space-2); flex-wrap: wrap; flex: 2 1 480px; }
+.learning-chips li {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  padding: var(--space-1) var(--space-2);
+}
+.currently-learning .btn-secondary { color: #fff; border-color: #fff; }
+.currently-learning .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+/* ---------- Closing CTA ---------- */
+.closing-cta { text-align: center; padding: var(--space-12) 0; }
+.closing-cta-inner h2 { margin-bottom: var(--space-4); }
+.cta-actions { display: flex; justify-content: center; gap: var(--space-2); flex-wrap: wrap; }
+
+/* ---------- Timeline (Career Timeline page) ---------- */
+.timeline { position: relative; padding-left: var(--space-4); border-left: 2px solid var(--color-border); }
+.timeline-item { position: relative; padding-bottom: var(--space-6); }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-4) * -1 - 6px);
+  top: 4px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--color-brass);
+  border: 2px solid var(--color-paper);
+}
+.timeline-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-brass); text-transform: uppercase; letter-spacing: 0.04em; }
+.timeline-item h3 { margin-top: var(--space-1); }
+.timeline-item p { color: var(--color-slate); }
+
+/* ---------- Definition list / FAQ ---------- */
+.faq-item { border-bottom: 1px solid var(--color-border); padding: var(--space-3) 0; }
+.faq-item h3 { margin-bottom: var(--space-1); }
+.faq-item p { color: var(--color-slate); margin: 0; }
+
+/* ---------- Reference / quote cards ---------- */
+.quote-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-brass);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.quote-card p { font-style: italic; color: var(--color-ink); }
+.quote-attribution { font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-slate); }
+
+/* ---------- Credential cards (Qualifications & Education pages) ---------- */
+.credential-note {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-slate);
+  border-left: 3px solid var(--color-brass);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-4);
+  max-width: 640px;
+}
+.credential-card {
+  display: flex;
+  flex-direction: column;
+}
+.credential-actions {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+.credential-thumb-link { display: inline-block; }
+.credential-thumb {
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  display: block;
+}
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+}
+.credential-unavailable {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-slate-light);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ---------- Contact form ---------- */
+.contact-form { display: grid; gap: var(--space-3); max-width: 560px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field label { font-size: 0.85rem; font-weight: 600; }
+.form-field input, .form-field textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--color-ink);
+}
+.form-field input:focus, .form-field textarea:focus {
+  outline: 2px solid var(--color-ledger-blue);
+  outline-offset: 1px;
+}
+.form-note { font-size: 0.82rem; color: var(--color-slate); }
+
+/* ---------- Disabled / "Coming soon" links ---------- */
+a[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+a[aria-disabled="true"]:hover { text-decoration: none; }
+.coming-soon-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-slate);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 1px 7px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* ---------- Inline icons ---------- */
+.inline-icon { display: inline-block; vertical-align: -3px; margin-right: 6px; }
+.inline-icon-light { filter: invert(1) brightness(2); }
+.footer-icon-link { display: inline-flex; align-items: center; }
+
+/* ---------- Hero (Home + interior variants) ---------- */
+.hero { padding: var(--space-12) 0 var(--space-8); }
+.hero-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-8); align-items: center; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brass);
+  margin-bottom: var(--space-2);
+}
+.hero h1 { font-size: 2.75rem; margin-bottom: var(--space-3); }
+.hero-role { display: block; font-size: 1.5rem; color: var(--color-ledger-blue); font-weight: 600; margin-top: var(--space-1); }
+.hero-sub { font-size: 1.125rem; color: var(--color-slate); max-width: 560px; margin-bottom: var(--space-4); }
+.hero-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.hero-photo { width: 100%; max-width: 360px; height: auto; border-radius: var(--radius); border: 1px solid var(--color-border); display: block; margin: 0 auto; }

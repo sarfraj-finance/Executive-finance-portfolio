@@ -1,0 +1,284 @@
+/* ==========================================================================
+   SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
+   styles/main.css — Design tokens, reset, base typography, page structure
+   (header, navigation, footer). Load order: main -> components -> animations
+   -> responsive. Components and responsive rules depend on the custom
+   properties defined here.
+   ========================================================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Color — "Verified Ledger" system */
+  --color-ink: #1B2430;
+  --color-paper: #F7F5F0;
+  --color-paper-alt: #F1EEE6;
+  --color-ledger-blue: #1F3A5F;
+  --color-ledger-blue-dark: #16293F;
+  --color-brass: #A6802E;
+  --color-slate: #5B6472;
+  --color-slate-light: #8891A0;
+  --color-green: #2F6E4E;
+  --color-border: rgba(91, 100, 114, 0.2);
+
+  /* Type */
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* Spacing (8px base unit) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  /* Layout */
+  --max-width: 1200px;
+  --radius: 4px;
+
+  /* Motion (referenced from animations.css) */
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 var(--space-2); }
+
+a {
+  color: var(--color-ledger-blue);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* ---------- Accessibility utilities ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-ledger-blue);
+  color: #fff;
+  padding: var(--space-2) var(--space-3);
+  z-index: 1000;
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--color-ledger-blue);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   HEADER / NAVIGATION (structure — interactive states live in components.css)
+   ========================================================================== */
+.site-header {
+  background: var(--color-paper);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.primary-nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.primary-nav a {
+  color: var(--color-ink);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: var(--space-1) 0;
+}
+
+.primary-nav a[aria-current="page"] {
+  color: var(--color-ledger-blue);
+  border-bottom: 2px solid var(--color-brass);
+}
+
+.has-dropdown { position: relative; }
+.dropdown-toggle {
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 500;
+  color: var(--color-ink);
+  cursor: pointer;
+  padding: var(--space-1) 0;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 220px;
+  padding: var(--space-1) 0;
+  box-shadow: 0 4px 12px rgba(27, 36, 48, 0.08);
+}
+/* Dropdown visibility is controlled entirely by JS via the .is-open class
+   (see js/navigation.js) — no :hover or :focus-within on purpose, so only
+   one dropdown can ever be open regardless of mouse or keyboard use. */
+.has-dropdown.is-open .dropdown-menu { display: block; }
+.dropdown-menu li a { display: block; padding: var(--space-1) var(--space-2); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1);
+}
+.nav-toggle-bar {
+  width: 24px;
+  height: 2px;
+  background: var(--color-ink);
+}
+
+/* ==========================================================================
+   STATUS BANNER — "Open to Opportunities"
+   ========================================================================== */
+.status-banner {
+  background: var(--color-ledger-blue);
+  color: #fff;
+  padding: var(--space-1) 0;
+}
+.status-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.875rem;
+}
+.status-banner p { margin: 0; }
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-green);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(47, 110, 78, 0.25);
+}
+
+/* ==========================================================================
+   PAGE HERO (used on every interior page — a lighter version of Home's hero)
+   ========================================================================== */
+.page-hero {
+  padding: var(--space-8) 0 var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+.page-hero .eyebrow { margin-bottom: var(--space-1); }
+.page-hero h1 { font-size: 2.25rem; margin-bottom: var(--space-2); }
+.page-hero p { color: var(--color-slate); font-size: 1.05rem; max-width: 680px; margin: 0; }
+
+/* ==========================================================================
+   GENERIC SECTION SPACING
+   ========================================================================== */
+.section { padding: var(--space-8) 0; }
+.section-alt { padding: var(--space-8) 0; background: var(--color-paper-alt); }
+.section-tight { padding: var(--space-6) 0; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  background: var(--color-ink);
+  color: rgba(255,255,255,0.85);
+  padding-top: var(--space-6);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-name { font-family: var(--font-display); font-weight: 600; margin: 0; color: #fff; }
+.footer-meta { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0; }
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.footer-links a { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+.footer-links a:hover { color: #fff; }
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.footer-contact a { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
+.footer-bottom {
+  padding: var(--space-3) 0;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
