@@ -306,154 +306,175 @@
       </div>
     </section>
 
-    <!-- ============ ILLUSTRATIVE FINANCIAL MODELS & CHARTS ============ -->
+    <!-- ============ FINANCIAL MODELS & DECISION-SUPPORT DASHBOARDS ============ -->
     <section class="section models-section" aria-labelledby="models-heading">
       <div class="container">
         <div class="section-heading-row">
-          <h2 id="models-heading">Financial Models &amp; Decision-Support Analysis</h2>
+          <h2 id="models-heading">Financial Models &amp; Decision-Support Dashboards</h2>
         </div>
-        <p class="disclaimer-light">Illustrative analysis using fictional or anonymised data. No employer-confidential information is included.</p>
+        <p class="disclaimer-light">Illustrative dashboards using fictional or anonymised data. No employer-confidential information is included.</p>
 
-        <!-- Model 1: Budget vs Actual -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Budget vs. Actual Analysis</h3>
-            <span class="model-meta">FY Period &middot; SAR '000s</span>
+        <div class="dashboard-gallery">
+
+          <!-- DASHBOARD 1: EXECUTIVE FINANCE OVERVIEW (full width) -->
+          <div class="model-card dashboard-full">
+            <div class="model-header">
+              <h3 class="model-title">Executive Finance Overview</h3>
+              <span class="model-meta">FY Period &middot; SAR</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="kpi-mini-grid kpi-grid-8">
+              <div class="kpi-mini"><div class="kpi-mini-value">SAR 12.4m</div><div class="kpi-mini-label">Revenue</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">4.3%</div><div class="kpi-mini-label">Revenue Growth</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">40.0%</div><div class="kpi-mini-label">Gross Margin</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">17.4%</div><div class="kpi-mini-label">EBITDA Margin</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">SAR 500k</div><div class="kpi-mini-label">Closing Cash</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">+4.3%</div><div class="kpi-mini-label">Budget Variance</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">46 days</div><div class="kpi-mini-label">DSO</div></div>
+              <div class="kpi-mini"><div class="kpi-mini-value">30 days</div><div class="kpi-mini-label">Cash Conversion Cycle</div></div>
+            </div>
+            <div class="dashboard-charts-row">
+              <div class="model-canvas-wrap">
+                <canvas id="chartOverviewTrend" role="img" aria-label="Line chart: monthly revenue and EBITDA trend over 12 months, both trending upward, fictional data."></canvas>
+              </div>
+              <div class="model-canvas-wrap">
+                <canvas id="chartOverviewBudget" role="img" aria-label="Bar chart: budget versus actual for revenue, gross profit, operating expenses and EBITDA, all actuals slightly ahead of budget, fictional data."></canvas>
+              </div>
+            </div>
+            <div class="kpi-mini-grid kpi-grid-4" id="kpiOverviewWC"></div>
+            <p class="model-insight">Growth and margins remain positive, while DSO presents the clearest working-capital opportunity.</p>
           </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartBudgetActual"></canvas></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>Which cost or revenue lines are driving the gap between plan and actual?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional single-entity budget, straight-line phasing across the year.</dd></div>
-            <div><dt>Analysis</dt><dd>Revenue and EBITDA both ran ahead of budget; OpEx also ran slightly over.</dd></div>
-            <div><dt>Management Insight</dt><dd>Favourable revenue variance is funding the OpEx overrun — worth confirming the two are linked before acting on either alone.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Review whether the OpEx increase is directly tied to the revenue outperformance before treating it as a cost-control issue.</dd></div>
-          </dl>
+
+          <!-- DASHBOARD 2: BUDGET VS ACTUAL -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Budget vs. Actual</h3>
+              <span class="model-meta">FY Period &middot; SAR '000s</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="model-canvas-wrap">
+              <canvas id="chartBudgetActual" role="img" aria-label="Clustered bar chart comparing budget and actual for revenue, gross profit, operating expenses and EBITDA, fictional data."></canvas>
+            </div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartBudgetBridge" role="img" aria-label="Variance bridge from budget total to actual total across revenue, gross profit, operating expenses and EBITDA, fictional data."></canvas>
+            </div>
+            <div class="kpi-mini-grid kpi-grid-4" id="kpiBudgetVariance"></div>
+            <p class="model-insight">Revenue and EBITDA are ahead of plan; the OpEx overrun should be tested against the additional revenue generated.</p>
+          </div>
+
+          <!-- DASHBOARD 3: REVENUE AND MARGIN TREND -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Revenue and Margin Trend</h3>
+              <span class="model-meta">12 Months &middot; SAR '000s / %</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="model-canvas-wrap">
+              <canvas id="chartRevenueTrend" role="img" aria-label="Combined chart: monthly revenue columns with gross margin and EBITDA margin percentage lines, both trending gently upward across 12 months, fictional data."></canvas>
+            </div>
+            <p class="model-insight">Revenue growth is accompanied by improving margins, indicating margin-accretive growth.</p>
+          </div>
+
+          <!-- DASHBOARD 4: CASH FLOW FORECAST -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Cash Flow Forecast</h3>
+              <span class="model-meta">Rolling Period &middot; SAR '000s</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="kpi-mini-grid kpi-grid-5" id="kpiCashFlow"></div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartCashClosing" role="img" aria-label="Line chart: monthly closing cash balance over 12 months against a minimum cash threshold, staying above threshold throughout, fictional data."></canvas>
+            </div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartCashInOut" role="img" aria-label="Bar chart comparing monthly cash inflows and outflows over 12 months, fictional data."></canvas>
+            </div>
+            <p class="model-insight">Operating inflows support the current cash position, but downside stress testing remains important.</p>
+          </div>
+
+          <!-- DASHBOARD 5: WORKING CAPITAL -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Working Capital</h3>
+              <span class="model-meta">Point-in-Time &middot; SAR '000s / Days</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="kpi-mini-grid kpi-grid-4" id="kpiWorkingCapital"></div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartCCC" role="img" aria-label="Horizontal bridge chart: days sales outstanding plus inventory days minus days payable outstanding equals a 30-day cash conversion cycle, fictional data."></canvas>
+            </div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartWCCompare" role="img" aria-label="Bar chart comparing accounts receivable, accounts payable and inventory balances, fictional data."></canvas>
+            </div>
+            <p class="model-insight">Receivables collection is the largest available lever for shortening the cash conversion cycle.</p>
+          </div>
+
+          <!-- DASHBOARD 6: AR AGEING -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">AR Ageing</h3>
+              <span class="model-meta">Point-in-Time &middot; SAR '000s</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="dashboard-charts-row">
+              <div class="model-canvas-wrap">
+                <canvas id="chartArAgeingH" role="img" aria-label="Horizontal bar chart of AR ageing buckets: current, 1 to 30 days, 31 to 60 days, 61 to 90 days, and over 90 days, fictional data."></canvas>
+              </div>
+              <div class="model-canvas-wrap">
+                <canvas id="chartArDonut" role="img" aria-label="Donut chart showing the proportion of total receivables in each ageing bucket, fictional data."></canvas>
+              </div>
+            </div>
+            <div class="kpi-mini-grid kpi-grid-3" id="kpiArAgeing"></div>
+            <p class="model-insight">Collection activity should prioritise the 61&ndash;90 and 90+ day balances.</p>
+          </div>
+
+          <!-- DASHBOARD 7: COST AND MARGIN -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Cost and Margin</h3>
+              <span class="model-meta">FY Period &middot; SAR '000s / %</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="model-canvas-wrap">
+              <canvas id="chartProfitBridge" role="img" aria-label="Profit bridge from revenue through direct costs to contribution margin, through operating expenses to EBITDA, fictional data."></canvas>
+            </div>
+            <div class="dashboard-charts-row">
+              <div class="model-canvas-wrap">
+                <canvas id="chartCostDonut" role="img" aria-label="Donut chart showing revenue split between direct costs, operating expenses and EBITDA, fictional data."></canvas>
+              </div>
+              <div class="model-canvas-wrap">
+                <canvas id="chartMarginTrend" role="img" aria-label="Line chart of contribution margin percentage and EBITDA margin percentage over 12 months, fictional data."></canvas>
+              </div>
+            </div>
+            <p class="model-insight">Operating leverage between contribution margin and EBITDA should be monitored as revenue scales.</p>
+          </div>
+
+          <!-- DASHBOARD 8: SCENARIO ANALYSIS -->
+          <div class="model-card">
+            <div class="model-header">
+              <h3 class="model-title">Scenario Analysis</h3>
+              <span class="model-meta">Base / Upside / Downside</span>
+            </div>
+            <span class="model-fictional-label">Illustrative dashboard using fictional data</span>
+            <div class="model-canvas-wrap">
+              <canvas id="chartScenario" role="img" aria-label="Bar chart comparing base, upside and downside scenarios across revenue growth, cost inflation and gross margin percentages, fictional data."></canvas>
+            </div>
+            <div class="model-canvas-wrap">
+              <canvas id="chartHeatmap" role="img" aria-label="Sensitivity heatmap showing the impact of revenue growth, cost inflation and gross margin changes across downside, base and upside scenarios, fictional data."></canvas>
+            </div>
+            <div class="kpi-mini-grid kpi-grid-3" id="kpiScenario"></div>
+            <p class="model-insight">Cash generation is more sensitive to margin pressure than to a moderate revenue-growth shortfall.</p>
+          </div>
+
         </div>
 
-        <!-- Model 2: Revenue & Margin Trend -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Monthly Revenue and Margin Trend</h3>
-            <span class="model-meta">12 Months &middot; SAR '000s / %</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartRevenueTrend"></canvas></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>Is revenue growth accompanied by margin improvement, or is it being bought with lower margins?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional 12-month revenue series with a modestly improving gross margin trend.</dd></div>
-            <div><dt>Analysis</dt><dd>Revenue and gross margin % both trend upward together across the year.</dd></div>
-            <div><dt>Management Insight</dt><dd>Growth here is margin-accretive, not margin-diluting — a healthier growth pattern than revenue gains alone would suggest.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Identify which product or customer mix shift is driving the margin improvement, to protect it as volume scales.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 3: Cash Flow Forecast -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Cash Flow Forecast</h3>
-            <span class="model-meta">Rolling Period &middot; SAR '000s</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartCashFlow"></canvas></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>Does the business generate enough operating cash to cover investing and financing outflows?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional opening cash position with illustrative operating, investing, and financing flows.</dd></div>
-            <div><dt>Analysis</dt><dd>Operating inflows comfortably cover outflows; investing and financing activity bring the position back to its starting level.</dd></div>
-            <div><dt>Management Insight</dt><dd>The business is cash-neutral over the period on these assumptions — no net cash build, but no erosion either.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Stress-test the operating inflow assumption, since it is doing the most work in keeping the position stable.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 4: Working Capital Dashboard -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Working Capital Dashboard</h3>
-            <span class="model-meta">Point-in-Time &middot; SAR '000s / Days</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="kpi-mini-grid" id="kpiWorkingCapital"></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>Is working capital tied up efficiently, or is cash sitting idle in the cycle?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional AR/AP/inventory balances for a single illustrative entity.</dd></div>
-            <div><dt>Analysis</dt><dd>A 30-day cash conversion cycle, with receivables collection (46 days) as the largest single component.</dd></div>
-            <div><dt>Management Insight</dt><dd>DSO is the biggest lever here — even a modest improvement in collections would shorten the whole cycle.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Prioritise collection-process review over inventory or payables changes, given where the cycle length is concentrated.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 5: AR Ageing Analysis -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">AR Ageing Analysis</h3>
-            <span class="model-meta">Point-in-Time &middot; SAR '000s</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartArAgeing"></canvas></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>Which receivables balances carry the highest collection risk right now?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional ageing buckets for a single illustrative entity.</dd></div>
-            <div><dt>Analysis</dt><dd>Most of the balance sits current or within 30 days; a smaller tail sits in the 61-90 and 90+ buckets.</dd></div>
-            <div><dt>Management Insight</dt><dd>Collection priority should focus on the 61-90 and 90+ buckets first — smaller in value, but highest risk of becoming uncollectable.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Assign the oldest balances to direct follow-up before they age further, rather than treating all overdue accounts the same.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 6: Cost & Margin Model -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Cost and Margin Model</h3>
-            <span class="model-meta">FY Period &middot; SAR '000s / %</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartCostMargin"></canvas></div>
-          <div class="kpi-mini-grid" id="kpiCostMargin"></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>How much of revenue converts to profit after direct and operating costs?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional single-entity cost structure.</dd></div>
-            <div><dt>Analysis</dt><dd>A 40% contribution margin narrows to a 17.4% EBITDA margin once operating costs are applied.</dd></div>
-            <div><dt>Management Insight</dt><dd>The gap between contribution margin and EBITDA margin is where operating leverage lives — worth tracking as volume changes.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Monitor whether OpEx scales with revenue or stays fixed, since that determines how EBITDA margin moves as the business grows.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 7: Scenario & Sensitivity Analysis -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Scenario and Sensitivity Analysis</h3>
-            <span class="model-meta">Base / Upside / Downside &middot; %</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="model-canvas-wrap"><canvas id="chartScenario"></canvas></div>
-          <div class="kpi-mini-grid" id="kpiScenario"></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>How sensitive is cash generation to changes in growth, cost inflation, and margin?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional base, upside, and downside cases varying revenue growth, cost inflation, and gross margin.</dd></div>
-            <div><dt>Analysis</dt><dd>The downside case turns cash-negative even with only a modest margin decline and cost-inflation increase.</dd></div>
-            <div><dt>Management Insight</dt><dd>Cash generation is more sensitive to gross margin than to revenue growth in this model — a margin slip matters more than a growth miss.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Prioritise margin protection over pure growth-chasing if the two ever trade off against each other.</dd></div>
-          </dl>
-        </div>
-
-        <!-- Model 8: Management KPI Dashboard -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Management KPI Dashboard</h3>
-            <span class="model-meta">Current Period</span>
-          </div>
-          <span class="model-fictional-label">Illustrative model using fictional data</span>
-          <div class="kpi-mini-grid" id="kpiManagement"></div>
-          <dl class="model-details">
-            <div><dt>Business Question</dt><dd>What single view would a CFO want before a monthly leadership meeting?</dd></div>
-            <div><dt>Key Assumptions</dt><dd>Fictional consolidated figures for a single illustrative entity.</dd></div>
-            <div><dt>Analysis</dt><dd>Growth, margin, and cash metrics are all currently positive and broadly consistent with each other.</dd></div>
-            <div><dt>Management Insight</dt><dd>No single metric is flashing a warning in isolation — the more useful question is which one moves first if conditions change.</dd></div>
-            <div><dt>Recommended Action</dt><dd>Track DSO and budget variance monthly as the earliest indicators of a shift in the other metrics.</dd></div>
-          </dl>
+        <div style="text-align: center; margin-top: 32px;">
+          <a href="fpa-portfolio.html" class="btn btn-secondary" aria-disabled="true">View Detailed FP&amp;A Portfolio <span class="coming-soon-badge">Coming soon</span></a>
         </div>
 
       </div>
     </section>
+
 
     <!-- ============ CURRENTLY DEVELOPING ============ -->
     <section class="currently-learning" aria-labelledby="learning-heading">
