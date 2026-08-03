@@ -337,6 +337,22 @@ ul { list-style: none; margin: 0; padding: 0; }
 .btn-tertiary:hover { background: rgba(27, 36, 48, 0.04); }
 
 /* ==========================================================================
+   INLINE ICONS (linkedin / email / location / download)
+   ========================================================================== */
+.inline-icon {
+  display: inline-block;
+  vertical-align: -3px;
+  margin-right: 6px;
+}
+/* Icons on dark backgrounds (footer, primary buttons) rendered white via filter */
+.inline-icon-light {
+  filter: invert(1) brightness(2);
+}
+.qs-with-icon { display: flex; align-items: center; }
+.btn-with-icon { display: inline-flex; align-items: center; }
+.footer-icon-link { display: inline-flex; align-items: center; }
+
+/* ==========================================================================
    RECRUITER QUICK SUMMARY
    ========================================================================== */
 .quick-summary { padding: var(--space-6) 0; }
