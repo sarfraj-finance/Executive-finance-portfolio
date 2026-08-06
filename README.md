@@ -1,61 +1,87 @@
-# Sarfraj Solanki — Executive Finance Identity (Home Page Release)
+# Sarfraj Solanki — Executive Finance Portfolio (Full Website)
 
-A premium executive personal website — not a CV template, not a student
-portfolio. Built for senior finance professionals, executive recruiters,
-CFOs, FP&A leaders, and MBA admissions reviewers.
+Complete, synchronized 15-page website. One shared navigation and footer,
+one design system, real assets throughout, zero "Coming Soon" labels.
 
-## Design system
-- **Palette:** deep navy / midnight / charcoal (primary), warm ivory / stone
-  grey / white (secondary), muted gold/bronze (accent only — no neon, no
-  multiple accent colors).
-- **Typography:** Playfair Display (editorial headings), Inter (body/UI),
-  IBM Plex Mono (financial figures and metadata).
-- **Layout:** narrow executive container (1180px max), reading sections
-  capped at 820px, deliberate section-to-section background rhythm
-  (navy hero → ivory → white → stone → navy dashboards → dark CTA → dark
-  footer).
+## Pages
+index.html · about.html · experience.html · achievements.html · projects.html ·
+fpa-portfolio.html · qualifications.html · education.html · references.html ·
+insights.html · now.html · faq.html · resume.html · contact.html · 404.html
 
-## Structure (11 sections, in order)
-1. Premium sticky navigation (transparent-over-hero → solid ivory + blur
-   on scroll)
-2. Executive hero (split layout, real headshot, floating credential labels)
-3. Recruiter & Leadership Snapshot (two-column facts, not a boxed grid)
-4. Selected Proof Metrics (6 only, animated count-up on scroll)
-5. Executive Profile Narrative (148-word narrative + pull quote)
-6. Core Finance Capabilities (4 editorial pillars, not skill-tag rows)
-7. Selected Business Achievements (4, large metric + title + one sentence)
-8. Executive Finance Dashboard Showcase (3 dashboards, SVG charts)
-9. Strategic Direction (4 short columns, replaces the old tag cloud)
-10. Executive Call to Action (dark section, no casual language)
-11. Premium Footer
+## Architecture
 
-## Charts
-All charts are inline SVG (not canvas) — they render reliably in local
-browsers, GitHub Pages, Chrome print, and PDF export. Every figure derives
-from one consistent SAR 12.4m annual revenue base, so nothing contradicts
-across the three dashboards. All data is explicitly fictional/illustrative;
-the disclaimer appears once at the section level per spec.
+```
+styles/
+  variables.css   — design tokens (navy/ivory/gold, type scale, spacing)
+  reset.css       — minimal reset
+  typography.css  — type scale, headings, pull-quote
+  layout.css      — containers, section rhythm, page-hero, footer
+  navigation.css  — sticky header, dropdowns (click-only), mobile menu
+  components.css  — buttons, cards, pillars, achievements, credentials, motion
+  pages.css       — page-specific layout (experience, philosophy, process
+                    flow, mindset, career direction, global perspective,
+                    insights, FAQ, references, contact form, 404)
+  dashboards.css  — FP&A dashboard components (Home + fpa-portfolio.html)
+  responsive.css  — all breakpoints
+  print.css       — browser print / PDF export
 
-## What's real vs. disabled
-- **Real:** headshot (`assets/images/Headshot.png`, your actual photo),
-  resume (`assets/documents/Sarfraj_Solanki_Resume.pdf`, converted from
-  your approved docx), all icons, favicon, OG image.
-- **Functional:** Home, Resume (view + download), Email, LinkedIn, and
-  "Finance Portfolio" (anchors down to the dashboard showcase on this same
-  page).
-- **Disabled with "Coming soon"** (only inside dropdown menus, per spec —
-  top-level items like "Insights" are simply muted without a visible
-  badge): Profile, Experience, Impact, Credentials dropdown items, and the
-  detailed FP&A Portfolio page.
+js/
+  main.js         — shared utilities, footer year
+  navigation.js   — ONE shared file, identical on every page: click-only
+                    dropdowns, single-open, close on outside-click/Escape/
+                    link-select, sticky-header scroll state
+  animations.js   — scroll-reveal, staggered reveal, metric counters,
+                    About page role-cycler
+  dashboards.js   — SVG chart engine (line/bar/waterfall/donut/heatmap),
+                    used on Home and fpa-portfolio.html
+  credentials.js  — checks each certificate exists before showing a
+                    preview; falls back to text if missing (none are
+                    missing in this release — all 6 are real)
+  contact.js      — mailto-based contact form handler
 
-## Known print limitation
-The dashboard section keeps its dark navy background in print/PDF export
-(chart text is styled light for on-screen contrast against navy; forcing
-it to swap to dark-on-white for print risked making labels invisible
-instead). Browsers preserve this correctly when "background graphics" is
-enabled in the print dialog. Worth a real print test before relying on it.
+assets/
+  images/          Headshot.png (real photo), favicon.png, og-image.jpg
+  documents/        Sarfraj_Solanki_Resume.pdf (real, converted from approved docx)
+  icons/             linkedin.svg, email.svg, location.svg, download.svg
+  certificates/      6 real redacted certificates (see below)
+  certificates/thumbnails/  matching preview thumbnails
+```
+
+## Certificates — all 6 are real, none are placeholders
+
+Built by redacting your actual uploaded documents (registration numbers,
+QR codes, and fine print blacked out; generous margins used since exact
+pixel-perfect redaction can't be guaranteed blind — please visually
+verify each one before this goes live):
+
+- ACCA_Membership_Redacted.pdf
+- ACCA_AAA_Prize_Redacted.pdf
+- SOCPA_Associate_Redacted.pdf
+- Oxford_Brookes_Degree_Redacted.pdf
+- JRN_Degree_Redacted.pdf (Bachelor of Commerce)
+- MCom_Provisional_Certificate_Redacted.pdf (Amity Master of Commerce —
+  this is the provisional certificate, since the final conferred degree
+  certificate doesn't exist yet; convocation is Nov/Dec 2026 per the
+  document itself)
+
+## Navigation
+
+One shared structure across all 15 pages:
+Home · Profile ▾ · Experience ▾ · Impact ▾ · Finance Portfolio ▾ ·
+Credentials ▾ · Insights ▾ · Resume · Contact
+
+Two dropdown items point to same-page anchors rather than separate files,
+since no separate pages exist for them:
+- Profile → Career Direction = `about.html#career-direction`
+- Experience → Career Timeline = `experience.html#career-timeline`
+- Finance Portfolio → Management Reporting / Working Capital Analysis /
+  Scenario Analysis = anchors within `fpa-portfolio.html`
+
+Every other dropdown item and every top-level link points to a real,
+complete page. Zero disabled links, zero `href="#"`, zero "Coming Soon."
 
 ## Deploying
+
 Push this folder's contents to your repo root and enable GitHub Pages.
-Canonical, Open Graph, and JSON-LD URLs already point to
+Canonical, Open Graph, and JSON-LD URLs across all 15 pages point to
 `https://sarfraj-finance.github.io/Executive-finance-portfolio/`.

@@ -1,0 +1,39 @@
+/* ==========================================================================
+   styles/dashboards.css — FP&A dashboard components (Home + fpa-portfolio.html).
+   ========================================================================== */
+.dashboard-executive { background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-dark); border-radius: var(--radius); padding: var(--space-4); }
+.dashboard-header-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-2); }
+.dashboard-title { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin: 0; }
+.dashboard-meta { font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+.dashboard-fictional-tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.68rem;
+  text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-gold);
+  border: 1px solid rgba(168,131,74,0.5); border-radius: 999px; padding: 3px 10px; margin-bottom: var(--space-3);
+}
+.dashboard-pair-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+
+.kpi-strip { display: grid; gap: var(--space-2); margin-bottom: var(--space-3); }
+.kpi-card-exec { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: var(--space-2); text-align: center; }
+.kpi-card-exec .kpi-value { font-family: var(--font-mono); font-weight: 600; font-size: 1.3rem; color: var(--color-gold); }
+.kpi-card-exec .kpi-label { font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+.kpi-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; margin-top: 6px; }
+.badge-good { background: rgba(62,122,92,0.3); color: #8FD3B0; }
+.badge-bad { background: rgba(168,92,72,0.3); color: #E5A793; }
+
+.chart-caption { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); margin: var(--space-2) 0 6px; }
+.svg-chart { background: rgba(255,255,255,0.02); border-radius: var(--radius); }
+.svg-chart svg { width: 100%; height: auto; display: block; }
+
+.mini-income-statement { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: var(--space-2); }
+.mini-income-statement th, .mini-income-statement td { text-align: left; padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+.mini-income-statement thead th { color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; font-weight: 500; }
+.mini-income-statement td.num, .mini-income-statement th.num { text-align: right; font-family: var(--font-mono); }
+.mini-income-statement tr.total-row td, .mini-income-statement tr.total-row th { border-top: 1.5px solid var(--color-gold); font-weight: 600; color: #fff; }
+
+.dashboard-insight { font-size: 0.9rem; color: rgba(255,255,255,0.85); margin: var(--space-3) 0 0; padding-top: var(--space-2); border-top: 1px solid rgba(255,255,255,0.1); }
+
+.scenario-mini-table { width: 100%; border-collapse: collapse; margin: var(--space-2) 0; font-size: 0.85rem; }
+.scenario-mini-table th, .scenario-mini-table td { text-align: left; padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
+.scenario-mini-table thead th { color: rgba(255,255,255,0.55); font-weight: 500; font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; }
+
+.dashboard-nav-anchor { display: block; position: relative; top: -90px; visibility: hidden; }

@@ -16,16 +16,35 @@
   <meta property="og:url" content="https://sarfraj-finance.github.io/Executive-finance-portfolio/experience.html">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="stylesheet" href="styles/main.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "about": {
+      "@type": "Person",
+      "name": "Sarfraj Solanki",
+      "jobTitle": "Senior Accountant",
+      "url": "https://sarfraj-finance.github.io/Executive-finance-portfolio/"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/typography.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/navigation.css">
   <link rel="stylesheet" href="styles/components.css">
-  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/pages.css">
+  <link rel="stylesheet" href="styles/dashboards.css">
   <link rel="stylesheet" href="styles/responsive.css">
+  <link rel="stylesheet" href="styles/print.css">
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <link rel="shortcut icon" href="favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -34,16 +53,12 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="wordmark" aria-label="Sarfraj Solanki — Home">Sarfraj Solanki</a>
-
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="primary-nav" id="primaryNav" aria-label="Primary">
         <ul>
-          <li><a href="index.html">Home</a></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">About</button><ul class="dropdown-menu"><li><a href="about.html">About & Philosophy</a></li><li><a href="future-vision.html">Career Vision & Strategy</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Experience</button><ul class="dropdown-menu"><li><a href="experience.html" aria-current="page">Professional Experience</a></li><li><a href="timeline.html">Career Timeline</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Achievements & Projects</button><ul class="dropdown-menu"><li><a href="achievements.html">Selected Achievements</a></li><li><a href="projects.html">Process-Improvement Projects</a></li><li><a href="fpa-portfolio.html">FP&A Portfolio</a></li></ul></li><li><a href="insights.html">Finance Insights</a></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Qualifications</button><ul class="dropdown-menu"><li><a href="qualifications.html">Awards & Qualifications</a></li><li><a href="education.html">Education</a></li></ul></li><li><a href="references.html">References</a></li><li><a href="now.html">Now</a></li><li><a href="faq.html">FAQ</a></li><li><a href="resume.html">Resume</a></li><li><a href="contact.html" class="nav-cta">Contact</a></li>
+          <li><a href="index.html">Home</a></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Profile</button><ul class="dropdown-menu"><li><a href="about.html">Professional Profile</a></li><li><a href="about.html#career-direction">Career Direction</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Experience</button><ul class="dropdown-menu"><li><a href="experience.html" aria-current="page">Professional Experience</a></li><li><a href="experience.html#career-timeline">Career Timeline</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Impact</button><ul class="dropdown-menu"><li><a href="achievements.html">Selected Achievements</a></li><li><a href="projects.html">Process-Improvement Projects</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Finance Portfolio</button><ul class="dropdown-menu"><li><a href="fpa-portfolio.html">FP&A Portfolio</a></li><li><a href="fpa-portfolio.html#management-reporting">Management Reporting</a></li><li><a href="fpa-portfolio.html#working-capital-analysis">Working Capital Analysis</a></li><li><a href="fpa-portfolio.html#scenario-analysis">Scenario Analysis</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Credentials</button><ul class="dropdown-menu"><li><a href="qualifications.html">Awards & Qualifications</a></li><li><a href="education.html">Education</a></li><li><a href="references.html">Executive References</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Insights</button><ul class="dropdown-menu"><li><a href="insights.html">Finance Insights</a></li><li><a href="now.html">Current Development</a></li><li><a href="faq.html">Recruiter FAQ</a></li></ul></li><li><a href="resume.html" class="nav-resume-link">Resume</a></li><li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -52,59 +67,89 @@
   <div class="status-banner" role="status">
     <div class="container status-banner-inner">
       <span class="status-dot" aria-hidden="true"></span>
-      <p><strong>Open to finance, FP&amp;A and business-partnering opportunities</strong> in Saudi Arabia, the GCC, UK, Ireland and selected international markets.</p>
+      <p><strong>Open to finance, FP&amp;A, financial analysis, and business-partnering opportunities</strong> in Saudi Arabia, the GCC, UK, Ireland, and selected international markets.</p>
     </div>
   </div>
 
   <main id="main-content">
     <section class="page-hero">
       <div class="container">
-        <p class="eyebrow">Professional Experience</p>
+        <p class="eyebrow-gold">Professional Experience</p>
         <h1>Six years, two employers, progressive scope</h1>
         <p>Multi-entity, multi-currency financial accounting and compliance in Saudi Arabia's food &amp; beverage sector.</p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container prose">
-        <span class="status-tag">Sep 2024 &ndash; Present</span>
-        <h2>Senior Accountant &mdash; Financial Reporting &amp; Compliance</h2>
-        <p><strong>Darj Company Ltd. (&#1588;&#1585;&#1603;&#1577; &#1583;&#1575;&#1585;&#1580; &#1575;&#1604;&#1605;&#1581;&#1583;&#1608;&#1583;&#1577;)</strong> &middot; Food &amp; beverage sector, restaurant and caf&eacute; operations &middot; Al Khobar, KSA</p>
-        <ul style="list-style: disc; padding-left: 24px; color: var(--color-slate);">
-          <li>Led month-end and year-end close across multi-entity operations &mdash; journal entries, accruals, and account reconciliations &mdash; delivering complete, audit-ready financial statements on schedule.</li>
-          <li>Managed full-cycle accounts payable for a high-volume, multi-entity supplier base, directing three-way matching (PO, GRN, invoice) and GL/cost-centre coding review.</li>
-          <li>Validated supplier tax invoices against ZATCA e-invoicing (Fatoora) and VAT format requirements, coordinating accurate, timely VAT filings.</li>
-          <li>Directed local and multi-currency payment runs through Saudi bank portals, maintaining strict segregation of duties and independent verification of supplier bank-detail changes.</li>
-          <li>Supported withholding-tax (WHT) deduction on cross-border payments and prepared audit-ready documentation for Zakat/Corporate Income Tax and ZATCA filings.</li>
-          <li>Coordinated data preparation for GOSI, Qiwa, and Mudad submissions, including WPS payroll compliance, in partnership with HR.</li>
-          <li>Monitored budget-to-actual performance and conducted variance analysis, delivering monthly management reports for finance leadership.</li>
-          <li>Maintained internal controls and anti-bribery/anti-corruption standards, supporting external audits with detailed schedules and documentation.</li>
-        </ul>
+    <section class="section section-white">
+      <div class="container-reading">
 
-        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 40px 0;">
+        <div class="role-block">
+          <div class="role-header"><h2 class="role-title">Senior Accountant &mdash; Financial Reporting &amp; Compliance</h2><span class="role-dates">Sep 2024 &ndash; Present</span></div>
+          <p class="role-company">Darj Company Ltd. &middot; Food &amp; beverage sector, restaurant and caf&eacute; operations &middot; Al Khobar, KSA</p>
+          <ul class="role-list">
+            <li>Led month-end and year-end close across multi-entity operations &mdash; journal entries, accruals, and account reconciliations &mdash; delivering complete, audit-ready financial statements on schedule.</li>
+            <li>Managed full-cycle accounts payable for a high-volume, multi-entity supplier base, directing three-way matching (PO, GRN, invoice) and GL/cost-centre coding review.</li>
+            <li>Validated supplier tax invoices against ZATCA e-invoicing (Fatoora) and VAT format requirements, coordinating accurate, timely VAT filings.</li>
+            <li>Directed local and multi-currency payment runs through Saudi bank portals, maintaining strict segregation of duties and independent verification of supplier bank-detail changes.</li>
+            <li>Supported withholding-tax (WHT) deduction on cross-border payments and prepared audit-ready documentation for Zakat/Corporate Income Tax and ZATCA filings.</li>
+            <li>Coordinated data preparation for GOSI, Qiwa, and Mudad submissions, including WPS payroll compliance, in partnership with HR.</li>
+            <li>Monitored budget-to-actual performance and conducted variance analysis, delivering monthly management reports for finance leadership.</li>
+            <li>Maintained internal controls and anti-bribery/anti-corruption standards, supporting external audits with detailed schedules and documentation.</li>
+          </ul>
+          <div class="role-meta-row"><span><strong>Systems:</strong> ERP-based reporting &amp; reconciliation workflows</span><span><strong>Cross-functional:</strong> Finance, procurement, HR, banks, auditors</span></div>
+        </div>
 
-        <span class="status-tag">Jan 2022 &ndash; Aug 2024</span>
-        <h2>Senior Accountant &mdash; AP, AR &amp; Cost Control</h2>
-        <p><strong>The Luxury Cake Address Trading Company</strong> (trading as "Laviviane") &middot; Al Khobar, KSA</p>
-        <ul style="list-style: disc; padding-left: 24px; color: var(--color-slate);">
-          <li>Directed end-to-end accounts payable across multiple business units, allocating costs accurately by unit and performing supplier statement reconciliations.</li>
-          <li>Reviewed procurement pricing and onboarded new suppliers with required Commercial Registration (CR), VAT certificate, and KYC documentation.</li>
-          <li>Performed bank reconciliations and financial transaction reviews, supporting clean monthly AP cut-off and accrual schedules.</li>
-          <li>Implemented improved credit-control procedures, reducing receivable ageing by 30% and materially improving cash flow and working-capital planning.</li>
-          <li>Managed 200+ vendor invoices monthly across multiple business units with 98%+ on-time accuracy.</li>
-        </ul>
+        <div class="role-block">
+          <div class="role-header"><h2 class="role-title">Senior Accountant &mdash; AP, AR &amp; Cost Control</h2><span class="role-dates">Jan 2022 &ndash; Aug 2024</span></div>
+          <p class="role-company">The Luxury Cake Address Trading Company (trading as &ldquo;Laviviane&rdquo;) &middot; Al Khobar, KSA</p>
+          <ul class="role-list">
+            <li>Directed end-to-end accounts payable across multiple business units, allocating costs accurately by unit and performing supplier statement reconciliations.</li>
+            <li>Reviewed procurement pricing and onboarded new suppliers with required Commercial Registration (CR), VAT certificate, and KYC documentation.</li>
+            <li>Performed bank reconciliations and financial transaction reviews, supporting clean monthly AP cut-off and accrual schedules.</li>
+            <li>Implemented improved credit-control procedures, reducing receivable ageing by 30% and materially improving cash flow and working-capital planning.</li>
+            <li>Managed 200+ vendor invoices monthly across multiple business units with 98%+ on-time accuracy.</li>
+          </ul>
+        </div>
 
-        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 40px 0;">
+        <div class="role-block">
+          <div class="role-header"><h2 class="role-title">General Accountant &mdash; AP &amp; AR</h2><span class="role-dates">Jun 2020 &ndash; Jan 2022</span></div>
+          <p class="role-company">The Luxury Cake Address Trading Company (trading as &ldquo;Laviviane&rdquo;) &middot; Al Khobar, KSA</p>
+          <ul class="role-list">
+            <li>Managed full-cycle AP/AR operations, handling accurate invoice processing and timely collections.</li>
+            <li>Reduced AP/AR processing time by 20% through workflow automation initiatives.</li>
+            <li>Conducted AR ageing analysis and implemented collection strategies that improved cash recovery.</li>
+            <li>Supported month-end close processes including reconciliations and journal entries.</li>
+          </ul>
+        </div>
 
-        <span class="status-tag">Jun 2020 &ndash; Jan 2022</span>
-        <h2>General Accountant &mdash; AP &amp; AR</h2>
-        <p><strong>The Luxury Cake Address Trading Company</strong> (trading as "Laviviane") &middot; Al Khobar, KSA</p>
-        <ul style="list-style: disc; padding-left: 24px; color: var(--color-slate);">
-          <li>Managed full-cycle AP/AR operations, handling accurate invoice processing and timely collections.</li>
-          <li>Reduced AP/AR processing time by 20% through workflow automation initiatives.</li>
-          <li>Conducted AR ageing analysis and implemented collection strategies that improved cash recovery.</li>
-          <li>Supported month-end close processes including reconciliations and journal entries.</li>
-        </ul>
+      </div>
+    </section>
+
+    <section class="section section-ivory" id="career-timeline" aria-labelledby="timeline-heading">
+      <div class="container-reading">
+        <p class="eyebrow-gold">Career Timeline</p>
+        <h2 id="timeline-heading">Progression and credentialing, side by side</h2>
+        <div class="journey-timeline">
+          <div class="journey-node"><span class="journey-node-meta">Jun 2020</span><p class="journey-node-title">General Accountant &mdash; AP &amp; AR</p><p class="journey-node-desc">The Luxury Cake Address Trading Company (&ldquo;Laviviane&rdquo;), Al Khobar, KSA</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Jan 2022</span><p class="journey-node-title">Promoted to Senior Accountant &mdash; AP, AR &amp; Cost Control</p><p class="journey-node-desc">Same employer, expanded scope across multiple business units</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Sep 2024</span><p class="journey-node-title">Senior Accountant &mdash; Financial Reporting &amp; Compliance</p><p class="journey-node-desc">Moved to Darj Company Ltd., full-cycle accounting across multiple entities</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Dec 2025</span><p class="journey-node-title">ACCA AAA Prizewinner in Saudi Arabia</p><p class="journey-node-desc">Highest mark nationally, Advanced Audit &amp; Assurance paper</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Jan 2026</span><p class="journey-node-title">Admitted as ACCA Member</p><p class="journey-node-desc">Registration confirmed, member in good standing</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Jan 2026</span><p class="journey-node-title">SOCPA Associate Member</p><p class="journey-node-desc">Saudi Organization for Chartered and Professional Accountants</p></div>
+          <div class="journey-node"><span class="journey-node-meta">Mar 2026</span><p class="journey-node-title">BSc (Hons) Applied Accounting &mdash; 2:1</p><p class="journey-node-desc">Oxford Brookes University, Upper Second Class Honours</p></div>
+          <div class="journey-node"><span class="journey-node-meta">In progress</span><p class="journey-node-title">CIA Certification</p><p class="journey-node-desc">Certified Internal Auditor studies underway</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-executive">
+      <div class="container">
+        <h2>Interested in discussing this experience in more detail?</h2>
+        <div class="cta-actions">
+          <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" class="btn btn-gold" target="_blank" rel="noopener noreferrer">View Resume</a>
+          <a href="contact.html" class="btn btn-outline-light">Get in Touch</a>
+        </div>
+        <p class="cta-location">Al Khobar, Saudi Arabia</p>
       </div>
     </section>
 
@@ -112,32 +157,18 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-col">
+      <div>
         <p class="footer-name">Sarfraj Solanki, ACCA</p>
-        <p class="footer-meta">SOCPA Associate &middot; Al Khobar, Saudi Arabia</p>
+        <p class="footer-role">Senior Accountant | FP&amp;A | Strategic Finance | Finance Business Partnering</p>
       </div>
-      <nav class="footer-col footer-links" aria-label="Footer">
-        <a href="about.html">About</a>
-        <a href="experience.html">Experience</a>
-        <a href="fpa-portfolio.html">FP&amp;A Portfolio</a>
-        <a href="insights.html">Insights</a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Email</a>
+        <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
       </nav>
-      <div class="footer-col footer-contact">
-        <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="footer-icon-link">
-          <img src="assets/icons/email.svg" alt="" width="16" height="16" class="inline-icon inline-icon-light">
-          sarfrajsolanki@outlook.com
-        </a>
-        <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
-          <img src="assets/icons/linkedin.svg" alt="" width="16" height="16" class="inline-icon inline-icon-light">
-          linkedin.com/in/sarfraj-s
-        </a>
-      </div>
+      <div class="footer-contact"><span>Al Khobar, Saudi Arabia</span></div>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; <span id="year"></span> Sarfraj Solanki. Achievements independently verifiable via ACCA and SOCPA where applicable.</p>
-    </div>
+    <div class="container footer-bottom"><p>&copy; <span id="year">2026</span> Sarfraj Solanki</p></div>
   </footer>
 
   <script src="js/main.js"></script>

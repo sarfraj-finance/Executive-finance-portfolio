@@ -1,0 +1,42 @@
+/* ==========================================================================
+   styles/layout.css — Containers and section spacing/background rhythm.
+   ========================================================================== */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--side-padding); }
+.container-reading { max-width: var(--reading-width); margin: 0 auto; padding: 0 var(--side-padding); }
+
+.section { padding: var(--space-12) 0; }
+.section-tight { padding: var(--space-8) 0; }
+.section-ivory { background: var(--color-ivory); }
+.section-white { background: var(--color-white); }
+.section-stone { background: var(--color-stone); }
+.section-navy { background: var(--color-navy); color: rgba(255,255,255,0.92); }
+.section-navy h2, .section-navy h3 { color: #fff; }
+
+.page-hero {
+  background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
+  color: #fff;
+  padding: 80px 0 64px;
+}
+.page-hero h1 { color: #fff; margin-bottom: var(--space-2); }
+.page-hero p { color: rgba(255,255,255,0.72); max-width: 640px; margin: 0; }
+
+.site-footer {
+  background: var(--color-navy-deep);
+  color: rgba(255,255,255,0.78);
+  padding: var(--space-8) 0 var(--space-4);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1.6fr 1.2fr;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-name { font-family: var(--font-display); font-size: 1.2rem; margin: 0; color: #fff; }
+.footer-role { font-size: 0.9rem; color: rgba(255,255,255,0.55); margin: 4px 0 0; }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.footer-links a { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+.footer-links a:hover { color: var(--color-gold); }
+.footer-contact { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.footer-contact a, .footer-contact span { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+.footer-bottom { padding-top: var(--space-3); font-size: 0.8rem; color: rgba(255,255,255,0.45); }

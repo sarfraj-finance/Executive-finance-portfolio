@@ -1,8 +1,26 @@
 /* ==========================================================================
-   SARFRAJ SOLANKI — EXECUTIVE FINANCE IDENTITY
-   styles/components.css — Hero, snapshot, capabilities, achievements,
-   dashboards, CTA. Depends on tokens in main.css.
+   styles/components.css — Reusable components used across multiple pages.
+   Motion rules (reveal, counters, reduced-motion) live here since this
+   architecture doesn't use a separate animations.css.
    ========================================================================== */
+
+/* ---------- Motion: subtle only — fade-in, small upward reveal ---------- */
+.btn, a[href] { transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast); }
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms ease, transform 600ms ease; transition-delay: var(--reveal-delay, 0ms); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.dashboard-executive { transition: transform var(--transition-base), box-shadow var(--transition-base); }
+.dashboard-executive:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(0,0,0,0.28); }
+.status-dot { animation: statusPulse 2.6s ease-in-out infinite; }
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(168,131,74,0.25); }
+  50% { box-shadow: 0 0 0 6px rgba(168,131,74,0.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+  .dashboard-executive:hover { transform: none; }
+}
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -17,338 +35,152 @@
   transition: background-color var(--transition-base), color var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
 }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
-
 .btn-gold { background: var(--color-gold); color: #fff; }
 .btn-gold:hover { background: #8f7440; }
-
 .btn-outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,0.5); }
 .btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
-
 .btn-outline-dark { background: transparent; color: var(--color-ink); border-color: var(--color-border); }
 .btn-outline-dark:hover { border-color: var(--color-ink); }
-
 .btn-text-light { background: transparent; color: rgba(255,255,255,0.85); border: none; padding: 13px 8px; }
 .btn-text-light:hover { color: #fff; }
-
+.btn-small { padding: 8px 16px; font-size: 0.82rem; }
 .btn-with-icon { display: inline-flex; align-items: center; gap: 8px; }
 
-a[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; pointer-events: auto; }
-a[aria-disabled="true"]:hover { text-decoration: none; transform: none; }
-.coming-soon-badge {
+.inline-icon { display: inline-block; vertical-align: -3px; margin-right: 6px; }
+.inline-icon-light { filter: invert(1) brightness(2); }
+
+/* ---------- Tick badge ---------- */
+.tick-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: rgba(168,131,74,0.14); color: var(--color-gold);
+  font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+}
+
+/* ---------- Generic card grid ---------- */
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+.card {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.card h3 { font-size: 1.05rem; padding-right: var(--space-4); }
+.card p { font-size: 0.92rem; color: var(--color-slate); margin: 0; }
+.card .tick-badge { position: absolute; top: var(--space-2); right: var(--space-2); }
+
+.disclaimer {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-slate);
+  border-left: 3px solid var(--color-gold);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.disclaimer-light {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.65);
+  border-left: 3px solid var(--color-gold);
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+.status-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-slate-light);
+  letter-spacing: 0.04em;
+  color: var(--color-slate);
+  background: var(--color-stone);
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  padding: 1px 7px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.dropdown-menu .coming-soon-badge { color: var(--color-slate-light); border-color: var(--color-border); }
-
-/* ---------- Status banner ---------- */
-.status-banner { background: var(--color-navy-deep); color: #fff; padding: 9px 0; }
-.status-banner-inner { display: flex; align-items: center; gap: var(--space-1); font-size: 0.85rem; }
-.status-banner p { margin: 0; }
-.status-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--color-gold); flex-shrink: 0;
-  box-shadow: 0 0 0 3px rgba(168,131,74,0.25);
-}
-
-/* ==========================================================================
-   EXECUTIVE HERO
-   ========================================================================== */
-.hero-executive {
-  background: linear-gradient(155deg, var(--color-navy) 0%, var(--color-navy-deep) 100%);
-  color: #fff;
-  padding: 88px 0 96px;
-}
-.hero-executive-inner {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--space-8);
-  align-items: center;
-}
-.hero-credential-line {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  color: var(--color-gold);
-  margin-bottom: var(--space-3);
-}
-.hero-executive h1 {
-  font-size: 3.1rem;
-  color: #fff;
+  padding: 2px 8px;
   margin-bottom: var(--space-2);
 }
-.hero-positioning {
-  font-size: 1.3rem;
-  font-family: var(--font-display);
-  font-style: italic;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: var(--space-3);
-  line-height: 1.4;
-}
-.hero-support {
-  font-size: 1.02rem;
-  color: rgba(255,255,255,0.7);
-  max-width: 540px;
-  margin-bottom: var(--space-4);
-}
-.hero-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
-.hero-secondary-links { display: flex; gap: var(--space-3); }
-.hero-secondary-links a { color: rgba(255,255,255,0.7); font-size: 0.9rem; display: inline-flex; align-items: center; gap: 6px; }
-.hero-secondary-links a:hover { color: var(--color-gold); }
 
-.hero-portrait-frame {
-  position: relative;
-  border-radius: var(--radius);
-  overflow: visible;
-}
-.hero-portrait-backdrop {
-  position: absolute;
-  inset: -14px -14px auto auto;
-  width: 92%;
-  height: 92%;
-  background: linear-gradient(160deg, rgba(168,131,74,0.18), rgba(14,27,46,0.4));
-  border-radius: var(--radius);
-  z-index: 0;
-}
-.hero-photo {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 380px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: var(--radius);
-  box-shadow: 0 28px 60px rgba(0,0,0,0.4);
-}
-.hero-gold-line {
-  position: absolute;
-  left: 50%;
-  bottom: -14px;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: var(--color-gold);
-  z-index: 2;
-}
-.hero-floating-label {
-  position: absolute;
-  z-index: 2;
-  background: rgba(250,247,241,0.94);
-  color: var(--color-ink);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  padding: 7px 14px;
-  border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  white-space: nowrap;
-}
-.hero-floating-label.fl-1 { top: 8%; left: -8%; }
-.hero-floating-label.fl-2 { top: 46%; right: -12%; }
-.hero-floating-label.fl-3 { bottom: 6%; left: -4%; }
-
-/* ==========================================================================
-   EXECUTIVE SNAPSHOT (two-column facts, not boxed grid)
-   ========================================================================== */
-.executive-snapshot { padding: var(--space-8) 0; }
+/* ---------- Executive Snapshot (two-column facts) ---------- */
 .snapshot-panel {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 900px; margin: 0 auto;
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
   padding: var(--space-4) 0;
 }
-.snapshot-facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: var(--space-6);
-  row-gap: var(--space-3);
-}
+.snapshot-facts { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-6); row-gap: var(--space-3); }
 .snapshot-fact { display: flex; gap: var(--space-2); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2); }
-.snapshot-fact dt {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-slate);
-  flex: 0 0 150px;
-}
+.snapshot-fact dt { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-slate); flex: 0 0 150px; }
 .snapshot-fact dd { margin: 0; font-size: 0.95rem; color: var(--color-ink); }
 
-/* ==========================================================================
-   SELECTED PROOF METRICS (6 only, large numbers)
-   ========================================================================== */
-.proof-metrics { padding: var(--space-8) 0; background: var(--color-stone); }
-.proof-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-3);
-  text-align: center;
-}
-.proof-metric-number {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 2.3rem;
-  color: var(--color-navy);
-  display: block;
-  line-height: 1;
-}
-.proof-metric-label {
-  font-size: 0.78rem;
-  color: var(--color-slate);
-  margin-top: 8px;
-  display: block;
-}
+/* ---------- Proof metrics ---------- */
+.proof-metrics-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-3); text-align: center; }
+.proof-metric-number { font-family: var(--font-mono); font-weight: 600; font-size: 2.3rem; color: var(--color-navy); display: block; line-height: 1; }
+.proof-metric-label { font-size: 0.78rem; color: var(--color-slate); margin-top: 8px; display: block; }
 
-/* ==========================================================================
-   EXECUTIVE PROFILE NARRATIVE
-   ========================================================================== */
-.narrative-section { padding: var(--space-12) 0; }
-.narrative-section p { font-size: 1.06rem; color: var(--color-ink); }
-.pull-quote {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.4rem;
-  color: var(--color-navy);
-  border-left: 3px solid var(--color-gold);
-  padding-left: var(--space-3);
-  margin: var(--space-4) 0 0;
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   CORE FINANCE CAPABILITIES (editorial columns, not cards)
-   ========================================================================== */
-.capability-pillars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
+/* ---------- Capability pillars (editorial columns) ---------- */
+.capability-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
 .pillar { padding-right: var(--space-2); }
-.pillar-number {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--color-gold);
-  letter-spacing: 0.04em;
-}
-.pillar-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  margin: 6px 0 var(--space-2);
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: var(--space-2);
-}
+.pillar-number { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-gold); letter-spacing: 0.04em; }
+.pillar-title { font-family: var(--font-display); font-size: 1.15rem; margin: 6px 0 var(--space-2); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2); }
 .pillar-list { display: flex; flex-direction: column; gap: 9px; }
 .pillar-item { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-1); font-size: 0.9rem; }
-.pillar-item-name { color: var(--color-ink); }
-.pillar-level {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-slate);
-  white-space: nowrap;
-}
+.pillar-level { font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-slate); white-space: nowrap; }
 .pillar-level.lv-advanced { color: var(--color-navy); }
 .pillar-level.lv-proficient { color: var(--color-good); }
 .pillar-level.lv-continuing { color: var(--color-slate-light); }
 
-/* ==========================================================================
-   SELECTED BUSINESS ACHIEVEMENTS
-   ========================================================================== */
-.achievements-editorial {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-3);
-}
+/* ---------- Achievements (editorial, large metric) ---------- */
+.achievements-editorial { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
 .achievement-block { text-align: left; padding: var(--space-3) 0; border-top: 2px solid var(--color-gold); }
 .achievement-metric { font-family: var(--font-mono); font-weight: 600; font-size: 2.4rem; color: var(--color-navy); line-height: 1; }
 .achievement-title { font-size: 1rem; font-weight: 600; margin: 10px 0 8px; color: var(--color-ink); }
 .achievement-impact { font-size: 0.88rem; color: var(--color-slate); margin: 0; }
 
-/* ==========================================================================
-   EXECUTIVE FINANCE DASHBOARD SHOWCASE
-   ========================================================================== */
-.dashboard-executive { background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-dark); border-radius: var(--radius); padding: var(--space-4); }
-.dashboard-header-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-2); }
-.dashboard-title { font-family: var(--font-display); font-size: 1.3rem; color: #fff; margin: 0; }
-.dashboard-meta { font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.5); }
-.dashboard-fictional-tag {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--color-gold);
-  border: 1px solid rgba(168,131,74,0.5);
-  border-radius: 999px;
-  padding: 3px 10px;
-  margin-bottom: var(--space-3);
+/* ---------- Case-study card (Achievements page: Challenge/Action/Result/Impact/Evidence) ---------- */
+.case-study { background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-4); margin-bottom: var(--space-3); }
+.case-study-title { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: var(--space-2); }
+.case-study-row { font-size: 0.92rem; color: var(--color-slate); margin: 0 0 8px; }
+.case-study-row strong { color: var(--color-ink); font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; display: inline-block; min-width: 100px; }
+
+/* ---------- Timeline (vertical) ---------- */
+.journey-timeline { position: relative; max-width: 720px; margin: 0 auto; padding-left: var(--space-4); }
+.journey-timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--color-gold), rgba(168,131,74,0.15)); }
+.journey-node { position: relative; padding-bottom: var(--space-4); }
+.journey-node:last-child { padding-bottom: 0; }
+.journey-node::before { content: ""; position: absolute; left: calc(-1 * var(--space-4) + 1px); top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--color-gold); border: 3px solid var(--color-ivory); box-shadow: 0 0 0 1px var(--color-gold); }
+.journey-node-title { font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 4px; }
+.journey-node-meta { font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-gold); margin-bottom: 4px; display: block; }
+.journey-node-desc { font-size: 0.88rem; color: var(--color-slate); margin: 0; }
+
+/* ---------- Credential cards (Qualifications & Education) ---------- */
+.credential-note {
+  font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-slate);
+  border-left: 3px solid var(--color-gold); padding-left: var(--space-2);
+  margin-bottom: var(--space-4); max-width: 680px;
 }
-.dashboard-pair-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.credential-card { display: flex; flex-direction: column; }
+.credential-actions { margin-top: var(--space-2); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+.credential-thumb-link { display: inline-block; }
+.credential-thumb { width: 100%; max-width: 160px; height: auto; border: 1px solid var(--color-border); border-radius: var(--radius); display: block; }
+.credential-unavailable { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-slate-light); margin: 0; font-style: italic; }
 
-.kpi-strip { display: grid; gap: var(--space-2); margin-bottom: var(--space-3); }
-.kpi-card-exec {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius);
-  padding: var(--space-2);
-  text-align: center;
-}
-.kpi-card-exec .kpi-value { font-family: var(--font-mono); font-weight: 600; font-size: 1.3rem; color: var(--color-gold); }
-.kpi-card-exec .kpi-label { font-size: 0.7rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
-.kpi-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; padding: 1px 7px; border-radius: 999px; margin-top: 6px; }
-.badge-good { background: rgba(62,122,92,0.3); color: #8FD3B0; }
-.badge-bad { background: rgba(168,92,72,0.3); color: #E5A793; }
+/* ---------- Values grid ---------- */
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); text-align: center; }
+.value-item { padding: var(--space-3) var(--space-1); }
+.value-mark { width: 32px; height: 32px; border: 1px solid var(--color-gold); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.85rem; color: var(--color-gold); }
+.value-title { font-family: var(--font-display); font-size: 1rem; margin: 0; }
 
-.chart-caption { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.03em; color: rgba(255,255,255,0.55); margin: var(--space-2) 0 6px; }
-.svg-chart { background: rgba(255,255,255,0.02); border-radius: var(--radius); }
-.svg-chart svg { width: 100%; height: auto; display: block; }
+/* ---------- Executive quote ---------- */
+.executive-quote-section { text-align: center; padding: var(--space-12) 0; }
+.executive-quote-mark { font-family: var(--font-display); font-size: 3rem; color: var(--color-gold); line-height: 1; margin-bottom: var(--space-2); }
+.executive-quote-text { font-family: var(--font-display); font-style: italic; font-size: 1.9rem; color: #fff; max-width: 780px; margin: 0 auto; line-height: 1.4; }
 
-.mini-income-statement { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: var(--space-2); }
-.mini-income-statement th, .mini-income-statement td { text-align: left; padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
-.mini-income-statement thead th { color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; font-weight: 500; }
-.mini-income-statement td.num, .mini-income-statement th.num { text-align: right; font-family: var(--font-mono); }
-.mini-income-statement tr.total-row td, .mini-income-statement tr.total-row th { border-top: 1.5px solid var(--color-gold); font-weight: 600; color: #fff; }
-
-.dashboard-insight {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.85);
-  margin: var(--space-3) 0 0;
-  padding-top: var(--space-2);
-  border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-/* ==========================================================================
-   STRATEGIC DIRECTION
-   ========================================================================== */
-.strategic-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-.strategic-col-title { font-family: var(--font-display); font-size: 1.05rem; color: var(--color-ink); margin-bottom: var(--space-2); padding-bottom: var(--space-1); border-bottom: 1px solid var(--color-border); }
-.strategic-col-list { display: flex; flex-direction: column; gap: 6px; }
-.strategic-col-list li { font-size: 0.9rem; color: var(--color-slate); }
-.strategic-col-list li::before { content: "— "; color: var(--color-gold); }
-
-/* ==========================================================================
-   EXECUTIVE CALL TO ACTION
-   ========================================================================== */
+/* ---------- CTA ---------- */
 .cta-executive { background: var(--color-navy-deep); color: #fff; padding: var(--space-12) 0; text-align: center; }
 .cta-executive h2 { color: #fff; max-width: 760px; margin: 0 auto var(--space-4); font-size: 2rem; }
 .cta-actions { display: flex; justify-content: center; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3); }
 .cta-location { font-family: var(--font-mono); font-size: 0.85rem; color: rgba(255,255,255,0.55); }
-
-/* ---------- Inline icons ---------- */
-.inline-icon { display: inline-block; vertical-align: -3px; margin-right: 6px; }
-.inline-icon-light { filter: invert(1) brightness(2); }

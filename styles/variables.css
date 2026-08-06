@@ -1,0 +1,41 @@
+/* ==========================================================================
+   SARFRAJ SOLANKI — EXECUTIVE FINANCE PORTFOLIO
+   styles/variables.css — Design tokens only. Loaded first.
+   ========================================================================== */
+:root {
+  --color-navy: #0E1B2E;
+  --color-navy-deep: #0A131F;
+  --color-charcoal: #1C1E22;
+  --color-ivory: #FAF7F1;
+  --color-stone: #F0EAE0;
+  --color-white: #FFFFFF;
+  --color-gold: #A8834A;
+  --color-gold-soft: rgba(168, 131, 74, 0.14);
+  --color-ink: #1E2430;
+  --color-slate: #5C6470;
+  --color-slate-light: #8891A0;
+  --color-good: #3E7A5C;
+  --color-bad: #A85C48;
+  --color-border: rgba(30, 36, 48, 0.12);
+  --color-border-dark: rgba(255, 255, 255, 0.14);
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-12: 96px;
+
+  --max-width: 1180px;
+  --reading-width: 820px;
+  --side-padding: 32px;
+  --radius: 3px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}

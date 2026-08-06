@@ -1,0 +1,68 @@
+/* ==========================================================================
+   styles/navigation.css — Sticky header, dropdowns, mobile menu.
+   Dropdown visibility is controlled ENTIRELY by JS via the .is-open class
+   (see js/navigation.js). No :hover, no :focus-within, anywhere in this
+   file — that is deliberate, so only one dropdown can ever be open
+   regardless of mouse or keyboard use.
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(14, 27, 46, 0.0);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+.site-header.is-scrolled {
+  background: rgba(250, 247, 241, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 24px rgba(14, 27, 46, 0.06);
+}
+
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; padding-bottom: 18px; }
+.wordmark { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; color: #fff; transition: color var(--transition-base); }
+.site-header.is-scrolled .wordmark { color: var(--color-ink); }
+
+.primary-nav ul { display: flex; align-items: center; gap: var(--space-3); }
+.primary-nav a, .dropdown-toggle {
+  color: rgba(255,255,255,0.88);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: var(--space-1) 0;
+  background: none; border: none;
+  transition: color var(--transition-base);
+}
+.site-header.is-scrolled .primary-nav a,
+.site-header.is-scrolled .dropdown-toggle { color: var(--color-ink); }
+.primary-nav a[aria-current="page"] { color: var(--color-gold) !important; border-bottom: 2px solid var(--color-gold); }
+
+.has-dropdown { position: relative; }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 230px;
+  padding: var(--space-1) 0;
+  box-shadow: 0 12px 32px rgba(14, 27, 46, 0.14);
+}
+.has-dropdown.is-open .dropdown-menu { display: block; }
+.dropdown-menu li a { display: block; padding: var(--space-1) var(--space-2); color: var(--color-ink) !important; }
+.dropdown-menu li a[aria-current="page"] { color: var(--color-gold) !important; border-bottom: none; }
+
+.nav-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; padding: var(--space-1); }
+.nav-toggle-bar { width: 22px; height: 2px; background: #fff; transition: background-color var(--transition-base); }
+.site-header.is-scrolled .nav-toggle-bar { background: var(--color-ink); }
+
+.nav-resume-link { border: 1px solid var(--color-gold); border-radius: 999px; padding: 7px 18px !important; color: #fff !important; }
+.site-header.is-scrolled .nav-resume-link { color: var(--color-ink) !important; }
+
+.status-banner { background: var(--color-navy-deep); color: #fff; padding: 9px 0; }
+.status-banner-inner { display: flex; align-items: center; gap: var(--space-1); font-size: 0.85rem; }
+.status-banner p { margin: 0; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-gold); flex-shrink: 0; box-shadow: 0 0 0 3px rgba(168,131,74,0.25); }

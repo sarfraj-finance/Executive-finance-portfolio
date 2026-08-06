@@ -11,7 +11,7 @@
 
   <meta property="og:type" content="profile">
   <meta property="og:title" content="About Sarfraj Solanki, ACCA | Finance Philosophy & Career Story">
-  <meta property="og:description" content="Who Sarfraj Solanki is as a finance professional — the story behind his career, how he thinks, and where he's headed.">
+  <meta property="og:description" content="Who Sarfraj Solanki is as a finance professional — the story behind his career, how he thinks, and where he's headed toward FP&A and strategic finance leadership.">
   <meta property="og:image" content="https://sarfraj-finance.github.io/Executive-finance-portfolio/assets/images/og-image.jpg">
   <meta property="og:url" content="https://sarfraj-finance.github.io/Executive-finance-portfolio/about.html">
   <meta name="twitter:card" content="summary_large_image">
@@ -29,75 +29,36 @@
   }
   </script>
 
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/typography.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/navigation.css">
   <link rel="stylesheet" href="styles/components.css">
-  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/pages.css">
+  <link rel="stylesheet" href="styles/dashboards.css">
   <link rel="stylesheet" href="styles/responsive.css">
-  <link rel="stylesheet" href="styles/about.css">
+  <link rel="stylesheet" href="styles/print.css">
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <link rel="shortcut icon" href="favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- ============ NAVIGATION (shared markup, Home file untouched) ============ -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="wordmark" aria-label="Sarfraj Solanki — Home">Sarfraj Solanki</a>
-
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span>
       </button>
-
       <nav class="primary-nav" id="primaryNav" aria-label="Primary">
         <ul>
-          <li><a href="index.html">Home</a></li>
-
-          <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Profile</button>
-            <ul class="dropdown-menu">
-              <li><a href="about.html" class="dropdown-link" aria-current="page">About &amp; Philosophy</a></li>
-              <li><a href="future-vision.html" aria-disabled="true">Career Vision &amp; Strategy <span class="coming-soon-badge">Coming soon</span></a></li>
-            </ul>
-          </li>
-
-          <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Experience</button>
-            <ul class="dropdown-menu">
-              <li><a href="experience.html" aria-disabled="true">Professional Experience <span class="coming-soon-badge">Coming soon</span></a></li>
-              <li><a href="timeline.html" aria-disabled="true">Career Timeline <span class="coming-soon-badge">Coming soon</span></a></li>
-            </ul>
-          </li>
-
-          <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Impact</button>
-            <ul class="dropdown-menu">
-              <li><a href="achievements.html" aria-disabled="true">Selected Achievements <span class="coming-soon-badge">Coming soon</span></a></li>
-              <li><a href="projects.html" aria-disabled="true">Process-Improvement Projects <span class="coming-soon-badge">Coming soon</span></a></li>
-            </ul>
-          </li>
-
-          <li><a href="index.html#dashboard-showcase">Finance Portfolio</a></li>
-
-          <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Credentials</button>
-            <ul class="dropdown-menu">
-              <li><a href="qualifications.html" aria-disabled="true">Awards &amp; Qualifications <span class="coming-soon-badge">Coming soon</span></a></li>
-              <li><a href="education.html" aria-disabled="true">Education <span class="coming-soon-badge">Coming soon</span></a></li>
-            </ul>
-          </li>
-
-          <li><a href="insights.html" aria-disabled="true">Insights</a></li>
-
-          <li><a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-resume-link">Resume</a></li>
-          <li><a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Contact</a></li>
+          <li><a href="index.html">Home</a></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Profile</button><ul class="dropdown-menu"><li><a href="about.html" aria-current="page">Professional Profile</a></li><li><a href="about.html#career-direction">Career Direction</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Experience</button><ul class="dropdown-menu"><li><a href="experience.html">Professional Experience</a></li><li><a href="experience.html#career-timeline">Career Timeline</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Impact</button><ul class="dropdown-menu"><li><a href="achievements.html">Selected Achievements</a></li><li><a href="projects.html">Process-Improvement Projects</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Finance Portfolio</button><ul class="dropdown-menu"><li><a href="fpa-portfolio.html">FP&A Portfolio</a></li><li><a href="fpa-portfolio.html#management-reporting">Management Reporting</a></li><li><a href="fpa-portfolio.html#working-capital-analysis">Working Capital Analysis</a></li><li><a href="fpa-portfolio.html#scenario-analysis">Scenario Analysis</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Credentials</button><ul class="dropdown-menu"><li><a href="qualifications.html">Awards & Qualifications</a></li><li><a href="education.html">Education</a></li><li><a href="references.html">Executive References</a></li></ul></li><li class="has-dropdown"><button class="dropdown-toggle" aria-expanded="false">Insights</button><ul class="dropdown-menu"><li><a href="insights.html">Finance Insights</a></li><li><a href="now.html">Current Development</a></li><li><a href="faq.html">Recruiter FAQ</a></li></ul></li><li><a href="resume.html" class="nav-resume-link">Resume</a></li><li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -111,15 +72,14 @@
   </div>
 
   <main id="main-content">
-
-    <!-- ============ 1. EXECUTIVE HERO ============ -->
-    <section class="about-hero">
+    <section class="page-hero">
       <div class="container about-hero-inner">
         <img src="assets/images/Headshot.png" alt="Portrait of Sarfraj Solanki" class="about-hero-portrait" width="300" height="300">
         <div>
           <p class="about-eyebrow">About</p>
+          <p class="about-role-cycler" id="roleCycler" aria-live="polite">Senior Accountant</p>
           <h1>The story behind the numbers</h1>
-          <p class="about-hero-intro">
+          <p style="color:rgba(255,255,255,0.72);font-size:1.05rem;max-width:520px;">
             I'm an ACCA member and SOCPA Associate based in Al Khobar, Saudi Arabia. This page isn't a second
             resume &mdash; it's the reasoning behind the one on my Home page: why I chose this path, how I think
             about finance, and where I'm deliberately headed next.
@@ -129,41 +89,17 @@
       <div class="container"><p class="scroll-cue">Scroll to read my story</p></div>
     </section>
 
-    <!-- ============ 2. PROFESSIONAL STORY ============ -->
-    <section class="section section-white story-section" aria-labelledby="story-heading">
+    <section class="section section-white" aria-labelledby="story-heading">
       <div class="container-reading">
         <p class="eyebrow-gold">Professional Story</p>
         <h2 id="story-heading">Why this path, specifically</h2>
-        <p>
-          I got into accounting for an unglamorous reason: I liked that it had a right answer. A trial balance
-          either balances or it doesn't, and I found that kind of clarity satisfying in a way that stuck with me
-          through my commerce education in India. What I didn't expect was how much judgment actually sits behind
-          that apparent certainty once you're doing the work for real.
-        </p>
-        <p>
-          I moved to Saudi Arabia because it offered something most early-career finance roles don't: real
-          responsibility, fast. Multi-entity, multi-currency operations in a market with genuinely demanding
-          regulatory expectations meant I was reconciling real consequences from early on, not shadowing someone
-          else's sign-off. That environment is where my technical foundation actually got built &mdash; not in a
-          classroom, but in filing cycles that either held up or didn't.
-        </p>
-        <p>
-          ACCA was the natural next step once I realized how much I didn't yet know I didn't know. I wanted a
-          qualification that would test judgment, not just recall &mdash; and Advanced Audit &amp; Assurance in
-          particular forced me to understand controls and assurance from first principles rather than as a
-          checklist. Passing it with the highest mark in Saudi Arabia confirmed the approach was working; it didn't
-          change the approach itself.
-        </p>
-        <p>
-          Strategic finance and FP&amp;A are where I'm heading now, for a straightforward reason: I've spent six
-          years making sure numbers are accurate, compliant, and defensible. I want to spend the next phase making
-          sure they're also useful &mdash; shaping a decision before it's made, not just documenting it afterward.
-          That's not a rejection of the technical work. It's the next thing built on top of it.
-        </p>
+        <p>I got into accounting for an unglamorous reason: I liked that it had a right answer. A trial balance either balances or it doesn't, and I found that kind of clarity satisfying in a way that stuck with me through my commerce education in India. What I didn't expect was how much judgment actually sits behind that apparent certainty once you're doing the work for real.</p>
+        <p>I moved to Saudi Arabia because it offered something most early-career finance roles don't: real responsibility, fast. Multi-entity, multi-currency operations in a market with genuinely demanding regulatory expectations meant I was reconciling real consequences from early on, not shadowing someone else's sign-off. That environment is where my technical foundation actually got built &mdash; not in a classroom, but in filing cycles that either held up or didn't.</p>
+        <p>ACCA was the natural next step once I realized how much I didn't yet know I didn't know. I wanted a qualification that would test judgment, not just recall &mdash; and Advanced Audit &amp; Assurance in particular forced me to understand controls and assurance from first principles rather than as a checklist. Passing it with the highest mark in Saudi Arabia confirmed the approach was working; it didn't change the approach itself.</p>
+        <p>Strategic finance and FP&amp;A are where I'm heading now, for a straightforward reason: I've spent six years making sure numbers are accurate, compliant, and defensible. I want to spend the next phase making sure they're also useful &mdash; shaping a decision before it's made, not just documenting it afterward. That's not a rejection of the technical work. It's the next thing built on top of it.</p>
       </div>
     </section>
 
-    <!-- ============ 3. CAREER JOURNEY TIMELINE ============ -->
     <section class="section section-ivory" aria-labelledby="journey-heading">
       <div class="container-reading">
         <p class="eyebrow-gold">Career Journey</p>
@@ -181,7 +117,6 @@
       </div>
     </section>
 
-    <!-- ============ 4. FINANCE PHILOSOPHY ============ -->
     <section class="section section-white" aria-labelledby="philosophy-heading">
       <div class="container">
         <p class="eyebrow-gold">Finance Philosophy</p>
@@ -198,7 +133,6 @@
       </div>
     </section>
 
-    <!-- ============ 5. HOW I WORK ============ -->
     <section class="section section-stone" aria-labelledby="work-heading">
       <div class="container">
         <p class="eyebrow-gold">How I Work</p>
@@ -219,26 +153,6 @@
       </div>
     </section>
 
-    <!-- ============ 6. PROFESSIONAL STRENGTHS ============ -->
-    <section class="section section-white" aria-labelledby="strengths-heading">
-      <div class="container">
-        <p class="eyebrow-gold">Professional Strengths</p>
-        <h2 id="strengths-heading">Where I add the most value</h2>
-        <div class="strengths-grid">
-          <div class="strength-card"><h3 class="strength-title">Financial Reporting</h3><p class="strength-desc">Multi-entity statements built to withstand scrutiny, not just close on time.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Internal Controls</h3><p class="strength-desc">Segregation of duties and independent verification, applied consistently.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Working Capital</h3><p class="strength-desc">Where technical accuracy meets real cash impact.</p></div>
-          <div class="strength-card"><h3 class="strength-title">ERP</h3><p class="strength-desc">Comfortable working across reporting and reconciliation workflows day to day.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Stakeholder Collaboration</h3><p class="strength-desc">Coordinating consistently across finance, operations, procurement, HR, banks, and auditors.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Commercial Finance</h3><p class="strength-desc">Connecting financial results back to the operational decisions that drove them.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Process Improvement</h3><p class="strength-desc">Redesigning a workflow when it's slowing the business down, not just following it as inherited.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Decision Support</h3><p class="strength-desc">Building the analytical bridge from record-keeping to recommendation.</p></div>
-          <div class="strength-card"><h3 class="strength-title">Audit Readiness</h3><p class="strength-desc">Documentation that holds up when an external auditor actually tests it.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ 7. LEADERSHIP MINDSET ============ -->
     <section class="section section-ivory" aria-labelledby="mindset-heading">
       <div class="container-reading">
         <p class="eyebrow-gold">Leadership Mindset</p>
@@ -256,12 +170,11 @@
       </div>
     </section>
 
-    <!-- ============ 8. CAREER VISION ============ -->
-    <section class="section section-navy" aria-labelledby="vision-heading">
+    <section class="section section-navy" id="career-direction" aria-labelledby="vision-heading">
       <div class="container-reading" style="text-align:center;">
         <p class="eyebrow-gold">Career Vision</p>
         <h2 id="vision-heading">Where this is headed</h2>
-        <span class="vision-direction-tag">Career Direction — Not Current Capability</span>
+        <span class="vision-direction-tag">Career Direction &mdash; Not Current Capability</span>
       </div>
       <div class="container-reading">
         <div class="vision-timeline">
@@ -273,17 +186,10 @@
           <div class="vision-step"><span class="vision-step-index">06</span><span class="vision-step-label">Finance Director</span></div>
           <div class="vision-step"><span class="vision-step-index">07</span><span class="vision-step-label">Future CFO</span></div>
         </div>
-        <p class="vision-note">
-          Getting there means continued, deliberate development &mdash; currently building toward <strong>CIA
-          certification</strong>, <strong>Power BI</strong>, <strong>SQL</strong>, and <strong>AI tools for
-          finance</strong>, alongside <strong>commercial finance</strong> and <strong>leadership</strong>
-          capability. I don't yet hold these at a senior level; this is the honest direction of travel, not a claim
-          of arrival.
-        </p>
+        <p class="vision-note">Getting there means continued, deliberate development &mdash; currently building toward <strong>CIA certification</strong>, <strong>Power BI</strong>, <strong>SQL</strong>, and <strong>AI tools for finance</strong>, alongside <strong>commercial finance</strong> and <strong>leadership</strong> capability. I don't yet hold these at a senior level; this is the honest direction of travel, not a claim of arrival.</p>
       </div>
     </section>
 
-    <!-- ============ 9. CORE VALUES ============ -->
     <section class="section section-white" aria-labelledby="values-heading">
       <div class="container">
         <p class="eyebrow-gold">Core Values</p>
@@ -301,7 +207,6 @@
       </div>
     </section>
 
-    <!-- ============ 10. GLOBAL PERSPECTIVE ============ -->
     <section class="section section-ivory" aria-labelledby="global-heading">
       <div class="container">
         <p class="eyebrow-gold">Global Perspective</p>
@@ -324,7 +229,6 @@
       </div>
     </section>
 
-    <!-- ============ 11. EXECUTIVE QUOTE ============ -->
     <section class="executive-quote-section section-navy">
       <div class="container">
         <p class="executive-quote-mark" aria-hidden="true">&ldquo;</p>
@@ -332,14 +236,11 @@
       </div>
     </section>
 
-    <!-- ============ 12. CALL TO ACTION ============ -->
     <section class="cta-executive">
       <div class="container">
         <h2>Interested in discussing finance transformation, FP&amp;A, or business partnering?</h2>
         <div class="cta-actions">
-          <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" class="btn btn-gold btn-with-icon" download="Sarfraj_Solanki_Resume.pdf">
-            <img loading="lazy" src="assets/icons/download.svg" alt="" width="15" height="15" class="inline-icon inline-icon-light">Download Resume
-          </a>
+          <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" class="btn btn-gold btn-with-icon" download="Sarfraj_Solanki_Resume.pdf"><img loading="lazy" src="assets/icons/download.svg" alt="" width="15" height="15" class="inline-icon inline-icon-light">Download Resume</a>
           <a href="index.html#dashboard-showcase" class="btn btn-outline-light">View Portfolio</a>
           <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">LinkedIn</a>
           <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="btn btn-text-light">Email</a>
@@ -350,30 +251,24 @@
 
   </main>
 
-  <!-- ============ FOOTER (shared markup, Home file untouched) ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>
         <p class="footer-name">Sarfraj Solanki, ACCA</p>
-        <p class="footer-role">Senior Accountant | FP&amp;A | Strategic Finance | Business Partnering</p>
+        <p class="footer-role">Senior Accountant | FP&amp;A | Strategic Finance | Finance Business Partnering</p>
       </div>
       <nav class="footer-links" aria-label="Footer">
         <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Email</a>
         <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a href="resume.html">Resume</a>
       </nav>
-      <div class="footer-contact">
-        <span>Al Khobar, Saudi Arabia</span>
-      </div>
+      <div class="footer-contact"><span>Al Khobar, Saudi Arabia</span></div>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; <span id="year">2026</span> Sarfraj Solanki</p>
-    </div>
+    <div class="container footer-bottom"><p>&copy; <span id="year">2026</span> Sarfraj Solanki</p></div>
   </footer>
 
   <script src="js/main.js"></script>
   <script src="js/navigation.js"></script>
   <script src="js/animations.js"></script>
-  <script src="js/about.js"></script>
 </body>
 </html>

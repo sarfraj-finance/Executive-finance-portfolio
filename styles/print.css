@@ -1,0 +1,25 @@
+/* ==========================================================================
+   styles/print.css — Browser print / PDF export.
+   ========================================================================== */
+@media print {
+  .site-header, .status-banner, .site-footer, .nav-toggle, .cta-executive { display: none !important; }
+  body { background: #fff; font-size: 11pt; }
+  .container, .container-reading { max-width: 100%; padding: 0 12px; }
+  a { color: var(--color-ink); text-decoration: none; }
+
+  .section, .section-tight, .snapshot-panel, .proof-metrics-grid { padding: 18px 0 !important; }
+  .page-hero { padding: 20px 0 !important; background: #fff !important; color: #000 !important; }
+  .page-hero h1, .page-hero p { color: #000 !important; }
+  .about-role-cycler { display: none; }
+
+  .card, .capability-card, .dashboard-executive, .kpi-card-exec, .case-study,
+  .credential-card, .achievement-block, .journey-node, .value-item, .philosophy-card,
+  .role-block, .mindset-item, .process-step, .insight-card, .reference-card {
+    break-inside: avoid; page-break-inside: avoid;
+  }
+  .philosophy-card { background: #fff !important; backdrop-filter: none !important; border: 1px solid #ddd !important; }
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+  .dashboard-pair-row, .process-flow { grid-template-columns: 1fr; flex-direction: column; }
+  .svg-chart svg { max-width: 100%; }
+  p, li { orphans: 3; widows: 3; }
+}

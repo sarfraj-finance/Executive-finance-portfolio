@@ -1,0 +1,43 @@
+/* ==========================================================================
+   styles/typography.css — Type scale and text elements.
+   ========================================================================== */
+body {
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--color-ink);
+  background-color: var(--color-ivory);
+}
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.18;
+  margin: 0 0 var(--space-2);
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+}
+h1 { font-size: 3rem; }
+h2 { font-size: 2.1rem; }
+h3 { font-size: 1.35rem; }
+p { margin: 0 0 var(--space-2); }
+a { color: var(--color-navy); }
+a:hover { text-decoration: underline; }
+
+.eyebrow-gold {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-navy);
+  border-left: 3px solid var(--color-gold);
+  padding-left: var(--space-3);
+  margin: var(--space-4) 0 0;
+  line-height: 1.5;
+}
