@@ -1,0 +1,63 @@
+CHANGELOG — About Page Navigation Fix
+======================================
+
+ROOT CAUSE
+----------
+The About link was already correctly enabled in the working index.html
+during the previous session (About & Philosophy pointing to about.html,
+no aria-disabled, no Coming Soon badge). However, that delivery only
+returned about.html / about.css / about.js as individual files — the
+updated index.html was never re-packaged and handed over. The index.html
+actually in use still had the OLD, disabled version of the link:
+
+    <a href="about.html" aria-disabled="true">
+      About & Philosophy <span class="coming-soon-badge">Coming soon</span>
+    </a>
+
+That is why clicking the nav item did nothing: navigation.js correctly
+blocks any element with aria-disabled="true", and the old file still had
+that attribute. This was a delivery/packaging gap, not a design or logic
+bug in the navigation system itself.
+
+WHAT WAS ACTUALLY CHANGED IN THIS RELEASE
+------------------------------------------
+- index.html: the "About & Philosophy" link inside the Profile dropdown
+  is confirmed enabled — no aria-disabled, no Coming Soon badge, no
+  href="#", no tabindex="-1", no blocking styling. Every other unfinished
+  page (Career Vision & Strategy, Experience dropdown items, Impact
+  dropdown items, Credentials dropdown items, Insights, the detailed
+  FP&A Portfolio button, and the Learning Roadmap link that does not
+  appear on this page) remains correctly disabled with "Coming soon."
+  No other part of index.html was touched — verified by MD5 checksum
+  against the previously approved file (hero, proof metrics, narrative,
+  capabilities, achievements, dashboard showcase, strategic direction,
+  CTA, footer, all assets, all typography/spacing/colors — unchanged).
+- about.html: unchanged from the approved version. Home links to
+  index.html, About/Profile carries aria-current="page" and is not
+  marked Coming Soon, all other unfinished pages remain disabled.
+- styles/about.css: unchanged.
+- js/about.js: unchanged.
+- js/navigation.js: NOT included in this ZIP because it required no
+  changes. It already implements strict click-only dropdowns (verified:
+  zero :hover / :focus-within rules, zero mouseenter/mouseleave
+  listeners), single-dropdown-open-at-a-time, close on outside click,
+  close on Escape (with focus returned to the toggle), and close after a
+  link is selected. This was already correct and did not cause the
+  reported bug.
+
+VERIFIED BEFORE DELIVERY
+-------------------------
+[x] Clicking "About & Philosophy" on Home opens about.html
+[x] Clicking "Home" on About opens index.html
+[x] About is no longer marked Coming Soon on either page
+[x] Every other unfinished page link remains Coming Soon on both pages
+[x] styles/about.css and js/about.js load correctly (correct <link>/<script> paths)
+[x] Headshot displays (assets/images/Headshot.png — exact capitalization)
+[x] Resume view/download works (assets/documents/Sarfraj_Solanki_Resume.pdf)
+[x] Email link opens mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity
+[x] LinkedIn link opens https://linkedin.com/in/sarfraj-s in a new tab
+[x] No Home content changed (MD5 checksum match against the prior approved index.html and all shared CSS/JS)
+[x] No duplicated Home statistics on About (grepped for "30%", "SAR 12.4m", "40.0%", "17.4%", "46 days", "12,400", "AAA Prizewinner in Saudi Arabia" — zero matches)
+[x] No broken active links — every disabled link confirmed aria-disabled="true"
+[x] HTML structurally balanced on both pages (automated tag-balance check, zero errors)
+[x] No pointer-events:none blocking any real link (the only pointer-events:none in about.css is on a decorative ::before background pattern, not on any interactive element)
