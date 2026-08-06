@@ -22,15 +22,9 @@
     "@type": "Person",
     "name": "Sarfraj Solanki",
     "jobTitle": "Senior Accountant",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Al Khobar",
-      "addressCountry": "Saudi Arabia"
-    },
+    "address": { "@type": "PostalAddress", "addressLocality": "Al Khobar", "addressCountry": "Saudi Arabia" },
     "url": "https://sarfraj-finance.github.io/Executive-finance-portfolio/",
-    "sameAs": [
-      "https://linkedin.com/in/sarfraj-s"
-    ],
+    "sameAs": ["https://linkedin.com/in/sarfraj-s"],
     "knowsAbout": ["Financial Reporting", "IFRS", "FP&A", "Strategic Finance", "ZATCA VAT Compliance", "Internal Controls"]
   }
   </script>
@@ -44,13 +38,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- ============ HEADER / NAVIGATION ============ -->
+  <!-- ============ 1. PREMIUM STICKY NAVIGATION ============ -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="wordmark" aria-label="Sarfraj Solanki — Home">Sarfraj Solanki</a>
@@ -66,7 +60,7 @@
           <li><a href="index.html" aria-current="page">Home</a></li>
 
           <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">About</button>
+            <button class="dropdown-toggle" aria-expanded="false">Profile</button>
             <ul class="dropdown-menu">
               <li><a href="about.html" aria-disabled="true">About &amp; Philosophy <span class="coming-soon-badge">Coming soon</span></a></li>
               <li><a href="future-vision.html" aria-disabled="true">Career Vision &amp; Strategy <span class="coming-soon-badge">Coming soon</span></a></li>
@@ -82,33 +76,28 @@
           </li>
 
           <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Achievements &amp; Projects</button>
+            <button class="dropdown-toggle" aria-expanded="false">Impact</button>
             <ul class="dropdown-menu">
               <li><a href="achievements.html" aria-disabled="true">Selected Achievements <span class="coming-soon-badge">Coming soon</span></a></li>
               <li><a href="projects.html" aria-disabled="true">Process-Improvement Projects <span class="coming-soon-badge">Coming soon</span></a></li>
-              <li><a href="fpa-portfolio.html" aria-disabled="true">FP&amp;A Portfolio <span class="coming-soon-badge">Coming soon</span></a></li>
             </ul>
           </li>
 
-          <li><a href="insights.html" aria-disabled="true">Finance Insights <span class="coming-soon-badge">Coming soon</span></a></li>
+          <!-- Finance Portfolio: functional — the 3 dashboards live on this page -->
+          <li><a href="#dashboard-showcase">Finance Portfolio</a></li>
 
           <li class="has-dropdown">
-            <button class="dropdown-toggle" aria-expanded="false">Qualifications</button>
+            <button class="dropdown-toggle" aria-expanded="false">Credentials</button>
             <ul class="dropdown-menu">
               <li><a href="qualifications.html" aria-disabled="true">Awards &amp; Qualifications <span class="coming-soon-badge">Coming soon</span></a></li>
               <li><a href="education.html" aria-disabled="true">Education <span class="coming-soon-badge">Coming soon</span></a></li>
             </ul>
           </li>
 
-          <li><a href="references.html" aria-disabled="true">References <span class="coming-soon-badge">Coming soon</span></a></li>
-          <li><a href="now.html" aria-disabled="true">Now <span class="coming-soon-badge">Coming soon</span></a></li>
-          <li><a href="faq.html" aria-disabled="true">FAQ <span class="coming-soon-badge">Coming soon</span></a></li>
+          <li><a href="insights.html" aria-disabled="true">Insights</a></li>
 
-          <!-- Resume: functional — opens the real PDF in a new tab -->
-          <li><a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
-
-          <!-- Contact: functional — pre-filled mailto -->
-          <li><a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="nav-cta">Contact</a></li>
+          <li><a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-resume-link">Resume</a></li>
+          <li><a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -124,136 +113,151 @@
 
   <main id="main-content">
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="container hero-inner">
+    <!-- ============ 2. EXECUTIVE HERO ============ -->
+    <section class="hero-executive">
+      <div class="container hero-executive-inner">
         <div class="hero-copy">
-          <p class="eyebrow">ACCA Member &middot; SOCPA Associate</p>
-          <h1>
-            Sarfraj Solanki
-            <span class="hero-role">Building toward Strategic Finance, FP&amp;A and Finance Business Partnering</span>
-          </h1>
-          <p class="hero-sub">
-            Six years of progressive finance experience across multi-entity Saudi operations in the food &amp; beverage
-            sector — IFRS-compliant reporting, regulatory compliance, and internal controls, now developing the
-            analytical and commercial judgment to support FP&amp;A and finance business-partnering work.
+          <p class="hero-credential-line">ACCA Member &middot; SOCPA Associate &middot; AAA Prizewinner</p>
+          <h1>Sarfraj Solanki</h1>
+          <p class="hero-positioning">Senior Accountant advancing toward FP&amp;A, Strategic Finance and Finance Business Partnering</p>
+          <p class="hero-support">
+            Six years of Saudi finance experience across financial reporting, IFRS, VAT, ZATCA, internal controls,
+            working capital and audit support, with increasing focus on analysis, planning and commercial decision
+            support.
           </p>
           <div class="hero-actions">
-            <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Resume</a>
-            <a href="#fpa-portfolio" class="btn btn-secondary">Explore FP&amp;A Portfolio</a>
+            <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-gold">View Resume</a>
+            <a href="#dashboard-showcase" class="btn btn-outline-light">Explore Finance Portfolio</a>
+          </div>
+          <div class="hero-secondary-links">
+            <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer">
+              <img loading="lazy" src="assets/icons/linkedin.svg" alt="" width="15" height="15" class="inline-icon inline-icon-light">LinkedIn
+            </a>
+            <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">
+              <img loading="lazy" src="assets/icons/email.svg" alt="" width="15" height="15" class="inline-icon inline-icon-light">Email
+            </a>
           </div>
         </div>
 
-        <div class="hero-media">
-          <img src="assets/images/Headshot.png" alt="Portrait of Sarfraj Solanki" class="hero-photo" width="360" height="440">
+        <div class="hero-portrait-frame reveal">
+          <div class="hero-portrait-backdrop" aria-hidden="true"></div>
+          <img src="assets/images/Headshot.png" alt="Portrait of Sarfraj Solanki" class="hero-photo" width="380" height="465">
+          <span class="hero-gold-line" aria-hidden="true"></span>
+          <span class="hero-floating-label fl-1">ACCA Member</span>
+          <span class="hero-floating-label fl-2">SOCPA Associate</span>
+          <span class="hero-floating-label fl-3">AAA Prizewinner</span>
         </div>
       </div>
     </section>
 
-    <!-- ============ RECRUITER QUICK SUMMARY ============ -->
-    <section class="quick-summary" aria-labelledby="quick-summary-heading">
+    <!-- ============ 3. RECRUITER & LEADERSHIP SNAPSHOT ============ -->
+    <section class="executive-snapshot section-ivory" aria-labelledby="snapshot-heading">
       <div class="container">
-        <h2 id="quick-summary-heading" class="visually-hidden">Recruiter Quick Summary</h2>
-        <div class="quick-summary-card">
-          <div class="quick-summary-header">
-            <span class="tick-badge" aria-hidden="true">&#10003;</span>
-            <p class="quick-summary-title">Recruiter Quick Summary</p>
-          </div>
-          <dl class="quick-summary-grid">
-            <div class="qs-item"><dt>Current role</dt><dd>Senior Accountant &mdash; Financial Reporting &amp; Compliance</dd></div>
-            <div class="qs-item"><dt>Experience</dt><dd>6 years, multi-entity Saudi operations (F&amp;B sector)</dd></div>
-            <div class="qs-item"><dt>Target roles</dt><dd>FP&amp;A Analyst &middot; Finance Business Partner &middot; Senior Financial Analyst &middot; Senior Accountant &middot; Financial Analyst &middot; Management Accountant</dd></div>
-            <div class="qs-item"><dt>Location</dt><dd class="qs-with-icon"><img loading="lazy" src="assets/icons/location.svg" alt="" width="16" height="16" class="inline-icon">Al Khobar, Saudi Arabia</dd></div>
-            <div class="qs-item"><dt>Work authorization</dt><dd>Valid Saudi Iqama; employer sponsorship required outside Saudi Arabia</dd></div>
-            <div class="qs-item"><dt>Languages</dt><dd>English fluent &middot; Urdu &amp; Hindi native/bilingual &middot; Arabic conversational with commercial and government-portal working knowledge</dd></div>
+        <h2 id="snapshot-heading" class="visually-hidden">Recruiter and Leadership Snapshot</h2>
+        <div class="snapshot-panel">
+          <dl class="snapshot-facts">
+            <div class="snapshot-fact"><dt>Current Role</dt><dd>Senior Accountant &mdash; Financial Reporting &amp; Compliance</dd></div>
+            <div class="snapshot-fact"><dt>Experience</dt><dd>6 years</dd></div>
+            <div class="snapshot-fact"><dt>Location</dt><dd>Al Khobar, Saudi Arabia</dd></div>
+            <div class="snapshot-fact"><dt>Sector</dt><dd>Multi-entity Saudi food &amp; beverage operations</dd></div>
+            <div class="snapshot-fact"><dt>Target Roles</dt><dd>FP&amp;A Analyst, Senior Financial Analyst, Finance Business Partner, Management Accountant, Senior Accountant</dd></div>
+            <div class="snapshot-fact"><dt>Work Authorization</dt><dd>Valid Saudi Iqama</dd></div>
+            <div class="snapshot-fact"><dt>Languages</dt><dd>English, Urdu, Hindi, Arabic</dd></div>
           </dl>
         </div>
       </div>
     </section>
 
-    <!-- ============ VERIFIED PROOF STRIP ============ -->
-    <section class="proof-strip" aria-label="Key verified facts">
-      <div class="container proof-grid">
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">6</span><span class="proof-label">Years progressive finance experience</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">ACCA</span><span class="proof-label">Member</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">AAA</span><span class="proof-label">Prizewinner in Saudi Arabia</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">SOCPA</span><span class="proof-label">Associate Member</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">2:1</span><span class="proof-label">BSc (Hons) Applied Accounting, Oxford Brookes</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">0</span><span class="proof-label">Material findings across supported external audits</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">30%</span><span class="proof-label">Reduction in receivables ageing</span></div>
-        <div class="proof-item"><span class="tick" aria-hidden="true">&#10003;</span><span class="proof-number">0</span><span class="proof-label">ZATCA penalties across multiple entities</span></div>
+    <!-- ============ 4. SELECTED PROOF METRICS ============ -->
+    <section class="proof-metrics" aria-label="Selected proof metrics">
+      <div class="container proof-metrics-grid">
+        <div class="reveal"><span class="proof-metric-number" data-count-to="6">0</span><span class="proof-metric-label">Years of progressive finance experience</span></div>
+        <div class="reveal"><span class="proof-metric-number" data-count-to="30" data-count-suffix="%">0%</span><span class="proof-metric-label">Reduction in receivables ageing</span></div>
+        <div class="reveal"><span class="proof-metric-number" data-count-to="0">0</span><span class="proof-metric-label">ZATCA penalties across multiple entities</span></div>
+        <div class="reveal"><span class="proof-metric-number" data-count-to="0">0</span><span class="proof-metric-label">Material findings across supported external audits</span></div>
+        <div class="reveal"><span class="proof-metric-number">AAA</span><span class="proof-metric-label">Prizewinner in Saudi Arabia</span></div>
+        <div class="reveal"><span class="proof-metric-number">2:1</span><span class="proof-metric-label">BSc (Hons) Applied Accounting</span></div>
       </div>
     </section>
 
-    <!-- ============ PROFESSIONAL INTRODUCTION ============ -->
-    <section class="section" aria-labelledby="intro-heading">
-      <div class="container intro-container">
-        <h2 id="intro-heading">Professional Introduction</h2>
+    <!-- ============ 5. EXECUTIVE PROFILE NARRATIVE ============ -->
+    <section class="narrative-section section-white" aria-labelledby="narrative-heading">
+      <div class="container-reading">
+        <p class="eyebrow-gold">Executive Profile</p>
+        <h2 id="narrative-heading">Finance professional combining technical control with commercial progression</h2>
         <p>
-          I'm an ACCA member and SOCPA Associate based in Al Khobar, Saudi Arabia, with six years of experience in
-          financial accounting, cost control, compliance, and audit support across multi-entity, multi-currency
-          operations in Saudi Arabia's food &amp; beverage sector. My work sits at the intersection of technical
-          accuracy &mdash; IFRS reporting, Saudi VAT and ZATCA compliance, internal controls &mdash; and practical
-          business impact, from working-capital and receivables improvement to audit readiness. Coordinating across
-          finance, operations, procurement, HR, banks, and auditors has been part of that work throughout. I'm
-          currently building toward FP&amp;A, strategic finance, and finance business partnering, with CIA
-          certification in progress.
+          I build financial control that holds up under scrutiny, and I'm now extending that discipline into analysis
+          that shapes decisions before they're made. Six years across multi-entity Saudi operations have given me
+          depth in financial reporting, IFRS-compliant statements, and the regulatory detail of Saudi VAT and ZATCA
+          e-invoicing &mdash; compliance work that either holds or doesn't, with no partial credit. Internal controls
+          and audit readiness have been a constant thread: segregation of duties, three-way matching, and
+          documentation that stands up when an external auditor tests it. Working capital has been where that
+          technical foundation met commercial impact, most directly in a sustained reduction in receivables ageing.
+          None of this happened in isolation &mdash; it required coordinating consistently across finance,
+          operations, procurement, HR, banks, and auditors. That cross-functional habit is now the bridge into FP&amp;A
+          and finance business partnering, where the same rigor applies to numbers that haven't happened yet.
         </p>
+        <p class="pull-quote">&ldquo;Finance should not only explain what happened. It should improve what happens next.&rdquo;</p>
       </div>
     </section>
 
-    <!-- ============ CORE FINANCE CAPABILITIES ============ -->
-    <section class="section section-alt" aria-labelledby="capability-heading">
+    <!-- ============ 6. CORE FINANCE CAPABILITIES ============ -->
+    <section class="section section-stone" aria-labelledby="capabilities-heading">
       <div class="container">
-        <h2 id="capability-heading">Core Finance Capabilities</h2>
-        <div class="capability-matrix">
+        <p class="eyebrow-gold">Capabilities</p>
+        <h2 id="capabilities-heading">Core Finance Capabilities</h2>
+        <div class="capability-pillars">
 
-          <div class="capability-card">
-            <h3 class="capability-card-title">Financial Reporting &amp; Control</h3>
-            <ul class="capability-tag-list">
-              <li><span class="cap-name">Financial Reporting</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">IFRS</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Month-End &amp; Year-End Close</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Internal Controls</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Audit Support</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Management Reporting</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">ERP Systems</span><span class="capability-level level-proficient">Proficient</span></li>
+          <div class="pillar">
+            <p class="pillar-number">01</p>
+            <h3 class="pillar-title">Financial Reporting &amp; Control</h3>
+            <p style="font-size:0.88rem;color:var(--color-slate);margin-bottom:12px;">Multi-entity financial statements and controls that hold up under audit scrutiny.</p>
+            <ul class="pillar-list">
+              <li class="pillar-item"><span class="pillar-item-name">Financial Reporting</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">IFRS</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Month-End &amp; Year-End Close</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Internal Controls</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Management Reporting</span><span class="pillar-level lv-proficient">Proficient</span></li>
             </ul>
           </div>
 
-          <div class="capability-card">
-            <h3 class="capability-card-title">Tax &amp; Regulatory Compliance</h3>
-            <ul class="capability-tag-list">
-              <li><span class="cap-name">Saudi VAT</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">ZATCA E-Invoicing</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Regulatory Compliance</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Audit Readiness</span><span class="capability-level level-advanced">Advanced</span></li>
+          <div class="pillar">
+            <p class="pillar-number">02</p>
+            <h3 class="pillar-title">Tax, Compliance &amp; Governance</h3>
+            <p style="font-size:0.88rem;color:var(--color-slate);margin-bottom:12px;">Saudi regulatory depth built through real filing cycles, not theory.</p>
+            <ul class="pillar-list">
+              <li class="pillar-item"><span class="pillar-item-name">Saudi VAT</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">ZATCA E-Invoicing</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Audit Support</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">ERP Systems</span><span class="pillar-level lv-proficient">Proficient</span></li>
             </ul>
           </div>
 
-          <div class="capability-card">
-            <h3 class="capability-card-title">Working Capital &amp; Operations</h3>
-            <ul class="capability-tag-list">
-              <li><span class="cap-name">Accounts Receivable</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Accounts Payable</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Working Capital</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Cash Flow Management</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Supplier Reconciliation</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Three-Way Matching</span><span class="capability-level level-proficient">Proficient</span></li>
+          <div class="pillar">
+            <p class="pillar-number">03</p>
+            <h3 class="pillar-title">Working Capital &amp; Financial Operations</h3>
+            <p style="font-size:0.88rem;color:var(--color-slate);margin-bottom:12px;">Where technical accuracy meets commercial cash impact.</p>
+            <ul class="pillar-list">
+              <li class="pillar-item"><span class="pillar-item-name">Accounts Receivable</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Accounts Payable</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Working Capital</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Cash Flow Management</span><span class="pillar-level lv-proficient">Proficient</span></li>
             </ul>
           </div>
 
-          <div class="capability-card">
-            <h3 class="capability-card-title">FP&amp;A, Data &amp; Decision Support</h3>
-            <ul class="capability-tag-list">
-              <li><span class="cap-name">Variance Analysis</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Financial Modelling</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Advanced Microsoft Excel</span><span class="capability-level level-advanced">Advanced</span></li>
-              <li><span class="cap-name">Power BI</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">SQL</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">KPI Reporting</span><span class="capability-level level-proficient">Proficient</span></li>
-              <li><span class="cap-name">Budgeting &amp; Forecasting</span><span class="capability-level level-continuing">Continuing Enhancement</span></li>
-              <li><span class="cap-name">Scenario Analysis</span><span class="capability-level level-continuing">Continuing Enhancement</span></li>
+          <div class="pillar">
+            <p class="pillar-number">04</p>
+            <h3 class="pillar-title">FP&amp;A, Analytics &amp; Decision Support</h3>
+            <p style="font-size:0.88rem;color:var(--color-slate);margin-bottom:12px;">Building the analytical layer on top of a verified accounting foundation.</p>
+            <ul class="pillar-list">
+              <li class="pillar-item"><span class="pillar-item-name">Variance Analysis</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Financial Modelling</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Advanced Excel</span><span class="pillar-level lv-advanced">Advanced</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Power BI</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">SQL</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">KPI Reporting</span><span class="pillar-level lv-proficient">Proficient</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Budgeting &amp; Forecasting</span><span class="pillar-level lv-continuing">Continuing Enhancement</span></li>
+              <li class="pillar-item"><span class="pillar-item-name">Scenario Analysis</span><span class="pillar-level lv-continuing">Continuing Enhancement</span></li>
             </ul>
           </div>
 
@@ -261,223 +265,186 @@
       </div>
     </section>
 
-    <!-- ============ FEATURED ACHIEVEMENTS ============ -->
-    <section class="section" aria-labelledby="achievements-heading">
+    <!-- ============ 7. SELECTED BUSINESS ACHIEVEMENTS ============ -->
+    <section class="section section-white" aria-labelledby="achievements-heading">
       <div class="container">
-        <h2 id="achievements-heading">Featured Achievements</h2>
-        <div class="card-grid achievements-grid">
-          <article class="card achievement-card">
-            <span class="tick-badge" aria-hidden="true">&#10003;</span>
-            <h3>30% reduction in receivables ageing</h3>
-            <p>Redesigned credit-control and collection-priority procedures, materially strengthening cash-flow position and working-capital availability.</p>
-          </article>
-          <article class="card achievement-card">
-            <span class="tick-badge" aria-hidden="true">&#10003;</span>
-            <h3>Zero ZATCA penalties across multiple entities</h3>
-            <p>Validated VAT and e-invoicing (Fatoora) compliance every filing period, removing compliance risk across all entities.</p>
-          </article>
-          <article class="card achievement-card">
-            <span class="tick-badge" aria-hidden="true">&#10003;</span>
-            <h3>ACCA AAA Prizewinner in Saudi Arabia</h3>
-            <p>Highest mark nationally in Advanced Audit &amp; Assurance, December 2025 session &mdash; independently verifiable technical depth.</p>
-          </article>
-          <article class="card achievement-card">
-            <span class="tick-badge" aria-hidden="true">&#10003;</span>
-            <h3>Supported external audits with zero material findings</h3>
-            <p>Prepared audit-ready working papers and reconciliations across every supported external audit cycle, multi-entity.</p>
-          </article>
+        <p class="eyebrow-gold">Impact</p>
+        <h2 id="achievements-heading">Selected Business Achievements</h2>
+        <div class="achievements-editorial">
+          <div class="achievement-block reveal">
+            <span class="achievement-metric" data-count-to="30" data-count-suffix="%">0%</span>
+            <h3 class="achievement-title">Reduction in receivables ageing</h3>
+            <p class="achievement-impact">Redesigned credit-control and collection-priority procedures, strengthening cash-flow position.</p>
+          </div>
+          <div class="achievement-block reveal">
+            <span class="achievement-metric" data-count-to="0">0</span>
+            <h3 class="achievement-title">ZATCA penalties across multiple entities</h3>
+            <p class="achievement-impact">Validated VAT and e-invoicing compliance every filing period, removing compliance risk.</p>
+          </div>
+          <div class="achievement-block reveal">
+            <span class="achievement-metric">AAA</span>
+            <h3 class="achievement-title">Prizewinner in Saudi Arabia</h3>
+            <p class="achievement-impact">Highest mark nationally in Advanced Audit &amp; Assurance, December 2025 session.</p>
+          </div>
+          <div class="achievement-block reveal">
+            <span class="achievement-metric" data-count-to="0">0</span>
+            <h3 class="achievement-title">Material findings across supported audits</h3>
+            <p class="achievement-impact">Prepared audit-ready working papers across every supported external audit cycle.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ FP&A & DECISION-SUPPORT PORTFOLIO ============ -->
-    <section class="section models-section" id="fpa-portfolio" aria-labelledby="portfolio-heading">
+    <!-- ============ 8. EXECUTIVE FINANCE DASHBOARD SHOWCASE ============ -->
+    <section class="section section-navy" id="dashboard-showcase" aria-labelledby="dashboard-heading">
       <div class="container">
-        <h2 id="portfolio-heading">FP&amp;A &amp; Decision-Support Portfolio</h2>
-        <p class="disclaimer-light">Illustrative dashboards using fictional or anonymised data. No employer-confidential information is included.</p>
+        <p class="eyebrow-gold">Finance Portfolio</p>
+        <h2 id="dashboard-heading">Executive Finance Dashboard Showcase</h2>
+        <p style="color:rgba(255,255,255,0.6);max-width:640px;margin-bottom:32px;">Illustrative analysis using fictional data. No employer-confidential information is included.</p>
 
-        <!-- DASHBOARD A -->
-        <div class="model-card dashboard-full">
-          <div class="model-header">
-            <h3 class="model-title">Executive Finance Performance</h3>
-            <span class="model-meta">FY Period &middot; SAR</span>
+        <!-- DASHBOARD 1 -->
+        <div class="dashboard-executive" style="margin-bottom: var(--space-4);">
+          <div class="dashboard-header-row">
+            <h3 class="dashboard-title">Executive Finance Performance</h3>
+            <span class="dashboard-meta">FY Period &middot; SAR</span>
           </div>
-          <p class="model-fictional-label-full">Illustrative dashboard using fictional data. No employer-confidential information is included.</p>
-          <div class="kpi-mini-grid kpi-grid-6" id="kpiDashboardA"></div>
-          <div class="dashboard-charts-row dashboard-charts-3">
-            <div class="model-chart-wrap">
-              <p class="model-chart-caption">Monthly Revenue vs. Budget (SAR '000s)</p>
+          <span class="dashboard-fictional-tag">Illustrative &middot; Fictional Data</span>
+          <div class="kpi-strip" style="grid-template-columns: repeat(6, 1fr);" id="kpiDash1"></div>
+          <div class="dashboard-charts-row" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;">
+            <div>
+              <p class="chart-caption">Revenue vs. Budget (SAR '000s)</p>
               <div id="svgRevenueBudget" class="svg-chart"></div>
             </div>
-            <div class="model-chart-wrap">
-              <p class="model-chart-caption">Gross Margin &amp; EBITDA Margin Trend (%)</p>
-              <div id="svgMarginTrendA" class="svg-chart"></div>
-            </div>
-            <div class="model-chart-wrap">
-              <p class="model-chart-caption">Budget Variance Bridge (SAR '000s)</p>
-              <div id="svgVarianceBridge" class="svg-chart"></div>
+            <div>
+              <p class="chart-caption">Gross Margin &amp; EBITDA Margin (%)</p>
+              <div id="svgMarginTrend" class="svg-chart"></div>
             </div>
           </div>
-          <p class="model-insight">Revenue and margins remain ahead of plan, while DSO is the clearest short-term working-capital opportunity.</p>
+          <p class="chart-caption">Budget Variance Bridge (SAR '000s)</p>
+          <div id="svgVarianceBridge" class="svg-chart"></div>
+          <p class="chart-caption">Mini Income Statement</p>
+          <div id="incomeStatement"></div>
+          <p class="dashboard-insight">Revenue and margins remain ahead of plan, while DSO is the clearest short-term working-capital opportunity.</p>
         </div>
 
         <div class="dashboard-pair-row">
-        <!-- DASHBOARD B -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Working Capital &amp; Cash</h3>
-            <span class="model-meta">Point-in-Time / 6-Month &middot; SAR '000s</span>
-          </div>
-          <p class="model-fictional-label-full">Illustrative dashboard using fictional data. No employer-confidential information is included.</p>
-          <div class="kpi-mini-grid kpi-grid-5" id="kpiDashboardB"></div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">AR Ageing Composition</p>
+          <!-- DASHBOARD 2 -->
+          <div class="dashboard-executive">
+            <div class="dashboard-header-row">
+              <h3 class="dashboard-title">Working Capital &amp; Cash</h3>
+              <span class="dashboard-meta">Point-in-Time &middot; SAR '000s</span>
+            </div>
+            <span class="dashboard-fictional-tag">Illustrative &middot; Fictional Data</span>
+            <div class="kpi-strip" style="grid-template-columns: repeat(3, 1fr);" id="kpiDash2"></div>
+            <p class="chart-caption">AR Ageing Composition</p>
             <div id="svgArDonut" class="svg-chart"></div>
-          </div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">DSO, DPO &amp; Inventory Days Trend (6 Months)</p>
-            <div id="svgDsoDpoTrend" class="svg-chart"></div>
-          </div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">Rolling Closing Cash Forecast vs. Minimum Threshold (6 Months)</p>
+            <p class="chart-caption">Rolling Closing Cash Forecast (6 Months) vs. Minimum Threshold</p>
             <div id="svgCashForecast" class="svg-chart"></div>
+            <p class="dashboard-insight">Receivables collection remains the largest lever for shortening the cash conversion cycle.</p>
           </div>
-          <p class="model-insight">Receivables collection remains the largest lever for shortening the cash conversion cycle and protecting liquidity.</p>
-        </div>
 
-        <!-- DASHBOARD C -->
-        <div class="model-card">
-          <div class="model-header">
-            <h3 class="model-title">Profitability &amp; Scenario Analysis</h3>
-            <span class="model-meta">FY Period &middot; SAR '000s / %</span>
-          </div>
-          <p class="model-fictional-label-full">Illustrative dashboard using fictional data. No employer-confidential information is included.</p>
-          <div class="kpi-mini-grid kpi-grid-5" id="kpiDashboardC"></div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">Profit Bridge: Revenue to EBITDA (SAR '000s)</p>
+          <!-- DASHBOARD 3 -->
+          <div class="dashboard-executive">
+            <div class="dashboard-header-row">
+              <h3 class="dashboard-title">Profitability &amp; Scenario Analysis</h3>
+              <span class="dashboard-meta">FY Period &middot; SAR '000s / %</span>
+            </div>
+            <span class="dashboard-fictional-tag">Illustrative &middot; Fictional Data</span>
+            <div class="kpi-strip" style="grid-template-columns: repeat(2, 1fr);" id="kpiDash3"></div>
+            <p class="chart-caption">Profit Bridge: Revenue to EBITDA</p>
             <div id="svgProfitBridge" class="svg-chart"></div>
-          </div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">Cost Composition</p>
-            <div id="svgCostDonut" class="svg-chart"></div>
-          </div>
-          <div class="model-chart-wrap">
-            <p class="model-chart-caption">Scenario Comparison: Revenue Growth &amp; Gross Margin</p>
+            <p class="chart-caption">Scenario Comparison</p>
             <div id="svgScenarioBars" class="svg-chart"></div>
+            <p class="chart-caption">Cash Sensitivity Matrix</p>
+            <div id="svgSensitivityMatrix" class="svg-chart"></div>
+            <p class="dashboard-insight">Cash generation is more sensitive to margin pressure than to a moderate revenue-growth shortfall.</p>
           </div>
-          <table class="scenario-mini-table">
-            <caption class="visually-hidden">EBITDA and closing cash by scenario</caption>
-            <thead><tr><th scope="col">Scenario</th><th scope="col">EBITDA (SAR '000s)</th><th scope="col">Closing Cash (SAR '000s)</th></tr></thead>
-            <tbody>
-              <tr><th scope="row">Base</th><td>2,158</td><td>500</td></tr>
-              <tr><th scope="row">Upside</th><td>2,480</td><td>840</td></tr>
-              <tr><th scope="row">Downside</th><td>1,860</td><td>440</td></tr>
-            </tbody>
-          </table>
-          <p class="model-insight">Cash generation is more sensitive to margin pressure than to a moderate revenue-growth shortfall.</p>
-        </div>
         </div>
 
-        <div style="text-align: center; margin-top: 32px;">
-          <a href="fpa-portfolio-detail.html" class="btn btn-secondary" aria-disabled="true">View Detailed FP&amp;A Portfolio <span class="coming-soon-badge">Coming soon</span></a>
+        <div style="text-align:center;margin-top:32px;">
+          <a href="fpa-portfolio-detail.html" class="btn btn-outline-light" aria-disabled="true">View Detailed FP&amp;A Portfolio <span class="coming-soon-badge">Coming soon</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ============ CURRENTLY DEVELOPING ============ -->
-    <section class="currently-learning" aria-labelledby="learning-heading">
+    <!-- ============ 9. STRATEGIC DIRECTION ============ -->
+    <section class="section section-ivory" aria-labelledby="strategic-heading">
       <div class="container">
-        <h2 id="learning-heading">Currently Developing</h2>
-        <p style="color: rgba(255,255,255,0.8); max-width: 680px; margin-bottom: 32px;">
-          Continuously strengthening the analytical, commercial, technology, and leadership capabilities required for
-          FP&amp;A, finance business partnering, and future finance leadership.
-        </p>
-
-        <div class="dev-group">
-          <p class="dev-group-title">Technical Finance</p>
-          <div class="dev-pills">
-            <span class="dev-pill">CIA <span class="dev-status status-in-progress">In Progress</span></span>
-            <span class="dev-pill">Budgeting and Forecasting <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">Scenario Analysis <span class="dev-status status-continuing">Continuing Enhancement</span></span>
+        <p class="eyebrow-gold">Current Development</p>
+        <h2 id="strategic-heading">Strategic Direction</h2>
+        <div class="strategic-columns">
+          <div>
+            <h3 class="strategic-col-title">Technical Finance</h3>
+            <ul class="strategic-col-list">
+              <li>CIA in progress</li>
+              <li>Budgeting and forecasting</li>
+              <li>Scenario analysis</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="dev-group">
-          <p class="dev-group-title">Data and Technology</p>
-          <div class="dev-pills">
-            <span class="dev-pill">Advanced Excel <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">Power BI <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">SQL <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">AI Tools for Finance <span class="dev-status status-developing">Developing</span></span>
+          <div>
+            <h3 class="strategic-col-title">Analytics &amp; Technology</h3>
+            <ul class="strategic-col-list">
+              <li>Advanced Excel</li>
+              <li>Power BI</li>
+              <li>SQL</li>
+              <li>AI tools for finance</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="dev-group">
-          <p class="dev-group-title">Commercial Finance</p>
-          <div class="dev-pills">
-            <span class="dev-pill">Finance Business Partnering <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">KPI Reporting <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">Commercial Decision Support <span class="dev-status status-continuing">Continuing Enhancement</span></span>
+          <div>
+            <h3 class="strategic-col-title">Commercial Finance</h3>
+            <ul class="strategic-col-list">
+              <li>Finance business partnering</li>
+              <li>KPI reporting</li>
+              <li>Decision support</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="dev-group">
-          <p class="dev-group-title">Leadership</p>
-          <div class="dev-pills">
-            <span class="dev-pill">Stakeholder Communication <span class="dev-status status-continuing">Continuing Enhancement</span></span>
-            <span class="dev-pill">Strategic Decision Support <span class="dev-status status-continuing">Continuing Enhancement</span></span>
+          <div>
+            <h3 class="strategic-col-title">Leadership</h3>
+            <ul class="strategic-col-list">
+              <li>Stakeholder communication</li>
+              <li>Strategic thinking</li>
+              <li>Executive communication</li>
+            </ul>
           </div>
-        </div>
-
-        <div style="margin-top: 32px;">
-          <a href="learning-roadmap.html" class="btn btn-secondary" aria-disabled="true">See Full Learning Roadmap &rarr; <span class="coming-soon-badge">Coming soon</span></a>
         </div>
       </div>
     </section>
 
-    <!-- ============ CLOSING CALLS TO ACTION ============ -->
-    <section class="closing-cta">
-      <div class="container closing-cta-inner">
-        <h2>Let's talk about where I can add value</h2>
+    <!-- ============ 10. EXECUTIVE CALL TO ACTION ============ -->
+    <section class="cta-executive">
+      <div class="container">
+        <h2>Open to finance roles where reporting, control and analysis support better business decisions.</h2>
         <div class="cta-actions">
-          <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" class="btn btn-primary btn-with-icon" download="Sarfraj_Solanki_Resume.pdf">
-            <img loading="lazy" src="assets/icons/download.svg" alt="" width="16" height="16" class="inline-icon inline-icon-light">Download Resume
+          <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" class="btn btn-gold btn-with-icon" download="Sarfraj_Solanki_Resume.pdf">
+            <img loading="lazy" src="assets/icons/download.svg" alt="" width="15" height="15" class="inline-icon inline-icon-light">Download Resume
           </a>
-          <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="btn btn-tertiary">Get in Touch</a>
+          <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">Connect on LinkedIn</a>
+          <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="btn btn-text-light">Email Sarfraj</a>
         </div>
+        <p class="cta-location">Al Khobar, Saudi Arabia</p>
       </div>
     </section>
 
   </main>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- ============ 11. PREMIUM FOOTER ============ -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-col">
+      <div>
         <p class="footer-name">Sarfraj Solanki, ACCA</p>
-        <p class="footer-meta">SOCPA Associate &middot; Al Khobar, Saudi Arabia</p>
+        <p class="footer-role">Senior Accountant | FP&amp;A | Strategic Finance | Business Partnering</p>
       </div>
-      <nav class="footer-col footer-links" aria-label="Footer">
-        <a href="about.html" aria-disabled="true">About <span class="coming-soon-badge">Coming soon</span></a>
-        <a href="experience.html" aria-disabled="true">Experience <span class="coming-soon-badge">Coming soon</span></a>
-        <a href="fpa-portfolio.html" aria-disabled="true">FP&amp;A Portfolio <span class="coming-soon-badge">Coming soon</span></a>
-        <a href="insights.html" aria-disabled="true">Insights <span class="coming-soon-badge">Coming soon</span></a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Email</a>
+        <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="assets/documents/Sarfraj_Solanki_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-        <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity">Contact</a>
       </nav>
-      <div class="footer-col footer-contact">
-        <a href="mailto:sarfrajsolanki@outlook.com?subject=Finance%20Opportunity" class="footer-icon-link">
-          <img loading="lazy" src="assets/icons/email.svg" alt="" width="16" height="16" class="inline-icon inline-icon-light">
-          sarfrajsolanki@outlook.com
-        </a>
-        <a href="https://linkedin.com/in/sarfraj-s" target="_blank" rel="noopener noreferrer" class="footer-icon-link">
-          <img loading="lazy" src="assets/icons/linkedin.svg" alt="" width="16" height="16" class="inline-icon inline-icon-light">
-          linkedin.com/in/sarfraj-s
-        </a>
+      <div class="footer-contact">
+        <span>Al Khobar, Saudi Arabia</span>
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; <span id="year"></span> Sarfraj Solanki. Achievements independently verifiable via ACCA and SOCPA where applicable.</p>
+      <p>&copy; <span id="year">2026</span> Sarfraj Solanki</p>
     </div>
   </footer>
 

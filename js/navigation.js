@@ -19,7 +19,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var navToggle = document.getElementById('navToggle');
   var primaryNav = document.getElementById('primaryNav');
+  var siteHeader = document.querySelector('.site-header');
   var dropdownItems = document.querySelectorAll('.has-dropdown');
+
+  /* ---------- Sticky nav: solid ivory bar once scrolled past the hero ---------- */
+  if (siteHeader) {
+    var scrollThreshold = 60;
+    var applyScrollState = function () {
+      if (window.scrollY > scrollThreshold) {
+        siteHeader.classList.add('is-scrolled');
+      } else {
+        siteHeader.classList.remove('is-scrolled');
+      }
+    };
+    applyScrollState();
+    window.addEventListener('scroll', applyScrollState, { passive: true });
+  }
 
   function closeAllDropdowns() {
     dropdownItems.forEach(function (item) {

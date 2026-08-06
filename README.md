@@ -1,81 +1,61 @@
-# Sarfraj Solanki — Executive Finance Portfolio (Home Page Release)
+# Sarfraj Solanki — Executive Finance Identity (Home Page Release)
 
-This package contains **only the Home page**, production-ready, using real
-assets throughout. No other pages are included yet.
+A premium executive personal website — not a CV template, not a student
+portfolio. Built for senior finance professionals, executive recruiters,
+CFOs, FP&A leaders, and MBA admissions reviewers.
 
-## Structure
+## Design system
+- **Palette:** deep navy / midnight / charcoal (primary), warm ivory / stone
+  grey / white (secondary), muted gold/bronze (accent only — no neon, no
+  multiple accent colors).
+- **Typography:** Playfair Display (editorial headings), Inter (body/UI),
+  IBM Plex Mono (financial figures and metadata).
+- **Layout:** narrow executive container (1180px max), reading sections
+  capped at 820px, deliberate section-to-section background rhythm
+  (navy hero → ivory → white → stone → navy dashboards → dark CTA → dark
+  footer).
 
-```
-index.html
-styles/
-  main.css          — design tokens, reset, header/nav/footer structure
-  components.css    — buttons, cards, capability grid, SAR achievement
-                       cards, financial-model section, dev pills
-  animations.css     — motion, reduced-motion support, scroll-reveal
-  responsive.css     — all breakpoints (tablet, mobile, print)
-js/
-  main.js            — small shared utilities
-  navigation.js       — strict click-only dropdown nav (see below)
-  animations.js       — scroll-reveal, footer year
-  charts.js           — 8 vanilla-JS canvas charts, fictional data only
-assets/
-  images/Headshot.png     — real photo, converted from your uploaded headshot
-  images/favicon.png
-  images/og-image.jpg
-  documents/Sarfraj_Solanki_Resume.pdf — real resume, converted from your approved docx
-  icons/linkedin.svg, email.svg, location.svg, download.svg
-robots.txt
-sitemap.xml (index.html only)
-favicon.ico
-README.md (this file)
-```
+## Structure (11 sections, in order)
+1. Premium sticky navigation (transparent-over-hero → solid ivory + blur
+   on scroll)
+2. Executive hero (split layout, real headshot, floating credential labels)
+3. Recruiter & Leadership Snapshot (two-column facts, not a boxed grid)
+4. Selected Proof Metrics (6 only, animated count-up on scroll)
+5. Executive Profile Narrative (148-word narrative + pull quote)
+6. Core Finance Capabilities (4 editorial pillars, not skill-tag rows)
+7. Selected Business Achievements (4, large metric + title + one sentence)
+8. Executive Finance Dashboard Showcase (3 dashboards, SVG charts)
+9. Strategic Direction (4 short columns, replaces the old tag cloud)
+10. Executive Call to Action (dark section, no casual language)
+11. Premium Footer
 
-## What's real vs. what's disabled
+## Charts
+All charts are inline SVG (not canvas) — they render reliably in local
+browsers, GitHub Pages, Chrome print, and PDF export. Every figure derives
+from one consistent SAR 12.4m annual revenue base, so nothing contradicts
+across the three dashboards. All data is explicitly fictional/illustrative;
+the disclaimer appears once at the section level per spec.
 
-- **Real assets**: headshot, resume PDF, favicon, OG image, all 4 icons — no
-  placeholders, no fabricated content.
-- **Real, verified content**: every proof stat, achievement, and capability
-  level on the page is drawn from your verified Career Master Profile.
-- **No MBA references anywhere** on this page, per instruction.
-- **Everything not yet built is disabled, not broken**: About, Career Vision,
-  Experience, Timeline, Achievements, Projects, FP&A Portfolio, Insights,
-  Qualifications, Education, References, Now, FAQ, and the Learning Roadmap
-  all show `aria-disabled="true"` with a "Coming soon" badge. Clicking them
-  does nothing (blocked in `navigation.js`) rather than 404ing.
-- **Fully functional**: Home, Resume (view in new tab from the nav/hero,
-  download from the closing CTA), email (mailto with prefilled subject), and
-  LinkedIn (`https://linkedin.com/in/sarfraj-s`, as previously verified in
-  this project — flag if this isn't your current URL).
+## What's real vs. disabled
+- **Real:** headshot (`assets/images/Headshot.png`, your actual photo),
+  resume (`assets/documents/Sarfraj_Solanki_Resume.pdf`, converted from
+  your approved docx), all icons, favicon, OG image.
+- **Functional:** Home, Resume (view + download), Email, LinkedIn, and
+  "Finance Portfolio" (anchors down to the dashboard showcase on this same
+  page).
+- **Disabled with "Coming soon"** (only inside dropdown menus, per spec —
+  top-level items like "Insights" are simply muted without a visible
+  badge): Profile, Experience, Impact, Credentials dropdown items, and the
+  detailed FP&A Portfolio page.
 
-## Navigation behavior (per spec, verified)
-
-- Dropdowns open **only on click** — no hover, no `:focus-within` anywhere
-  in the CSS.
-- Only one dropdown can be open at a time; opening one closes any other.
-- Closes on outside click, on Escape (returns focus to the toggle), and
-  after any link inside is selected.
-- Mobile menu closes automatically after any link is chosen.
-- Every dropdown toggle has correct `aria-expanded` state throughout.
-
-## The 8 financial models
-
-Every dataset in `js/charts.js` is fictional — SAR figures, dates, and
-percentages are illustrative only, generated to demonstrate method, not
-copied from any real employer. Each model includes a business question,
-key assumptions, analysis, management insight, and recommended action, per
-the spec. All 8 render as accessible vanilla-JS `<canvas>` charts or plain
-KPI cards — no external charting library, so nothing to break on GitHub
-Pages.
+## Known print limitation
+The dashboard section keeps its dark navy background in print/PDF export
+(chart text is styled light for on-screen contrast against navy; forcing
+it to swap to dark-on-white for print risked making labels invisible
+instead). Browsers preserve this correctly when "background graphics" is
+enabled in the print dialog. Worth a real print test before relying on it.
 
 ## Deploying
-
-Push this folder's contents to your repo root and enable GitHub Pages
-(Settings → Pages → deploy from branch root). Canonical URLs, Open Graph
-tags, and JSON-LD already point to
+Push this folder's contents to your repo root and enable GitHub Pages.
+Canonical, Open Graph, and JSON-LD URLs already point to
 `https://sarfraj-finance.github.io/Executive-finance-portfolio/`.
-
-When you're ready to add more pages, drop them in alongside `index.html`
-and change the corresponding nav links from `aria-disabled="true"` back to
-normal — the "Coming soon" badges and disabled-click handling in
-`navigation.js` are scoped to `[aria-disabled="true"]` generally, so
-removing the attribute is enough to re-enable a link.
